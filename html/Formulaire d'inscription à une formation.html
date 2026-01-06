@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+    <fieldset>
+        <table>
+        <legend>Inscription</legend>
+        <tr>
+            <td>
+                <label for="nom">Nom</label>
+            </td>
+            <td>
+                <input type="text" id="nom" name="nom" placeholder="Saisir votre nom" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="prenom">Prénom</label>
+            </td>
+            <td>
+                <input type="text" id="prenom" name="prenom" placeholder="Saisir votre prénom" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="email">Email</label>
+            </td>
+            <td>
+                <input type="email" id="email" name="email" placeholder="exemple@serveur.com" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="date de naissance">date de naissance</label>
+            </td>
+            <td>
+                <input type="date" id="date de naissance" name="date de naissance" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="formation choisies">formation choisies</label>
+            </td>
+            <td>
+                <select id="formation choisies" name="formation choisies" size="4" multiple required>
+                    <option value="developpement web">Développement Web</option>
+                    <option value="data science">Data Science</option>
+                    <option value="cybersecurite">Cybersécurité</option>
+                    <option value="marketing digital">Marketing Digital</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="mode de formation">mode de formation</label>
+            </td>
+            <td>
+                <input type="radio" id="présontiel" name="mode de formation" value="présontiel">
+                <label for="présontiel">Présentiel</label>
+                <input type="radio" id="En ligne" name="mode de formation" value="En ligne">
+                <label for="En ligne">En ligne</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="modules supplémontaires">modules supplémontaires</label>
+            </td>
+      
+            <td>
+                <input type="checkbox" id="checkbox" name="longague" value="Html/Css">
+                <label for="Html/Css">Html/Css</label>
+            <br>
+                <input type="checkbox" id="checkbox" name="longague" value="Java script">
+                <label for="Java script">Java script</label>
+            <br>
+                <input type="checkbox" id="checkbox" name="longague" value="Base de données">
+                <label for="Base de données">Base de données</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <label for="commentaire / motivations">commentaire / motivations</label>
+            </td>
+            <td>
+                <textarea id="commentaire / motivations" name="commentaire / motivations" rows="4" cols="50" placeholder="Écrire un commentaire (facultatif)"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="condition">condition</label>
+            </td>
+            <td>
+                <input type="checkbox" id="condition" name="commentaire">
+                <label for="j'accepte les condition générales">j'accepte les condition générales</label>
+            </td>
+        </tr>
+        </table>
+        <input type="submit" value="Envoyer">
+        <input type="reset" value="Annuler">
+    </fieldset>
+    </form>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vos données personnelles</title>
+</head>
+<body>
+    <form action="">
+    <h1> Vos données personnelles</h1>
+    <table>
+    <tr>
+     <td>
+         <label for="Nom">Nom</label>
+     </td   >
+     <td>
+         <input type="text"required id="Nom" name="nome" placeholder="Votre nom">
+     </td>
+    </td>
+    <tr>
+        <td>
+         <label for="Prénom">Prénom</label>
+       </td>
+        <td>
+            <input type="text" required id="Prénom" name="prénom" placeholder="Votre prénom">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="Date de naissance">Date de naissance</label>
+        </td>
+        <td>
+            <input type="date" required id="Date de naissance" name="date de naissance">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="lieu de naissance">Lieu de naissance</label>
+        </td>
+        <td>
+            <input type="radio" id="Seine-Saint-Denis" name="lieu de naissance" value="Seine-Saint-Denis">
+            <label for="Seine-Saint-Denis">Seine-Saint-Denis</label>
+            <input type="radio" id="Reste du monde" name="lieu de naissance" value="Hauts-de-Seine">
+            <label for="Reste du monde">Reste du monde</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="Adresse postale">Adresse postale</label>
+        </td>
+        <td>
+            <input type="text" required id="Adresse postale" name="adresse postale" placeholder="Votre Adresse">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="code postale">Code postal</label>
+        </td>
+        <td>
+            <input type="text" required id="code postale" name="code postale" value="93000">
+    </tr>
+    <tr>
+        <td>
+            <label for="Adresse électronique">Adresse électronique</label>
+        </td>
+        <td>
+            <input type="email" required id="Adresse électronique" name="adresse électronique" placeholder="Votre adresse électronique">
+        </td>
+    </tr>
+    <tr>
+        <td>
+           <label for="Téléphone portable"> Téléphone portable</label>
+        </td>
+        <td>
+            <input type="tel" required id="Téléphone portable" name="téléphone portable" placeholder="0601020304">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="Semestre">Semestre</label>
+        </td>
+        <td>
+            <select id="Semestre" name="semestre" size="1">
+                <option value="S1">Semestre 1</option>
+                <option value="S2">Semestre 2</option>
+                <option value="S3">Semestre 3</option>
+                <option value="S4">Semestre 4</option>
+                <option value="S5">Semestre 5</option>
+                <option value="S6">Semestre 6</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="Niveau en HTML">Niveau en HTML</label>
+        </td>
+        <td>
+            <span> </span>
+            <input type="range" min="0" max="100" value="50" id="Niveau en HTML" name="niveau en HTML">
+            <span> 5/10</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="Connaissances">Connaissances</label>
+        </td>
+        <td>
+            <input type="checkbox" id="HTML" name="connaissances" value="HTML">
+            <label for="HTML">HTML</label>
+            <input type="checkbox" id="CSS" name="connaissances" value="CSS">
+            <label for="CSS">CSS</label>
+            <input type="checkbox" id="formulaires" name="connaissances" value="formulaires">
+            <label for="formulaires">Formulaires</label>
+            <input type="checkbox" id="JavaScript" name="connaissances" value="JavaScript">
+            <label for="JavaScript">JavaScript</label>
+
+        </td>
+    </tr>
+</table>
+<input type="submit" value="Envoyer"/>
+</form>
+</body>
+</html>

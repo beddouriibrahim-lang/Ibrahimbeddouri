@@ -1,0 +1,2058 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="WhatsApp Image 2026-01-02 at 10.33.22.jpeg">
+  <title>CV Builder</title>
+
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --muted:#a9abbd;
+      --text:#f3f4ff;
+      --line: rgba(255,255,255,.10);
+      --accent:#d6b25e;
+      --accent2:#ffde8a;
+
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 24px;
+
+      --pageMax: 1100px;
+      --sideW: 320px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      --headerH: 78px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 10% -10%, rgba(214,178,94,.18), transparent 60%),
+        radial-gradient(800px 520px at 95% 10%, rgba(255,222,138,.10), transparent 60%),
+        radial-gradient(900px 650px at 50% 110%, rgba(214,178,94,.10), transparent 60%),
+        linear-gradient(180deg, #06060a, var(--bg));
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+
+    /* Header */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--headerH);
+      display:flex;
+      align-items:center;
+      backdrop-filter: blur(14px);
+      background: rgba(5,5,6,.62);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      padding: 0 18px;
+    }
+    .container{
+      max-width: var(--pageMax);
+      margin: 0 auto;
+      width:100%;
+      padding: 0 10px;
+    }
+    .header__inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      width:100%;
+      height:100%;
+    }
+    .logo{
+      display:flex; align-items:center; gap:14px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+      min-width: 260px;
+    }
+    .logo__mark{
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(214,178,94,.45);
+      box-shadow: 0 12px 40px rgba(214,178,94,.22);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    .logo__mark img{
+      width:100%; height:100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      filter: contrast(1.05) saturate(1.05);
+    }
+    .logo__text{ font-size: 18px; }
+    .logo__text small{
+      display:block;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .35px;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .nav{ display:flex; align-items:center; gap: 10px; flex-wrap:wrap; justify-content:flex-end; }
+    .nav__link{
+      color: var(--muted);
+      font-weight: 950;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      transition: background .15s ease, color .15s ease, transform .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .nav__link:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.12);
+      transform: translateY(-1px);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+      cursor:pointer;
+      font-weight: 950;
+      letter-spacing: .2px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+      user-select:none;
+      color: var(--text);
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.12);
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.20);
+      box-shadow: 0 24px 70px rgba(0,0,0,.40);
+    }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+
+    .btn--gold{
+      border-color: rgba(214,178,94,.55);
+      background: linear-gradient(135deg, rgba(214,178,94,.18), rgba(255,222,138,.07));
+    }
+    .btn--gold:hover{
+      border-color: rgba(255,222,138,.70);
+      background: linear-gradient(135deg, rgba(214,178,94,.26), rgba(255,222,138,.12));
+    }
+    .btn--danger{
+      border-color: rgba(255,90,90,.30);
+      background: rgba(255,90,90,.08);
+    }
+
+    /* ✅ Language select */
+    .langSelect{
+      height: 44px;
+      padding: 0 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 950;
+      letter-spacing: .2px;
+      cursor: pointer;
+      outline: none;
+    }
+    .langSelect option{ color:#000; }
+
+    /* Layout */
+    .wrap{
+      max-width: var(--pageMax);
+      margin: 22px auto 44px;
+      padding: 0 16px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items:start;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card__pad{ padding: 18px; }
+
+    .sectionTitle{
+      margin:0 0 12px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+      font-weight: 1000;
+    }
+    .muted{ color: var(--muted); font-weight: 800; }
+
+    /* Builder form */
+    .builder{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+    }
+    .builder__left, .builder__right{
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .fieldRow{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .field{ display:grid; gap: 6px; margin-bottom: 12px; }
+    label{ font-size: 13px; color: var(--muted); font-weight: 900; }
+    input, textarea{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 10px 12px;
+      outline:none;
+      font-weight: 850;
+    }
+    textarea{ min-height: 92px; resize: vertical; }
+    .hint{ font-size: 12px; color: var(--muted); font-weight: 750; }
+
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
+
+    .toolbar{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+      margin-top: 10px;
+    }
+
+    .previewPhoto{
+      width: 110px; height:110px;
+      border-radius: 22px;
+      border: 1px solid rgba(214,178,94,.55);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 12px 40px rgba(214,178,94,.18);
+      overflow:hidden;
+      margin-bottom: 10px;
+    }
+    .previewPhoto img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* CV */
+    .cv{
+      display:grid;
+      grid-template-columns: var(--sideW) 1fr;
+      gap: 16px;
+      align-items:start;
+    }
+    .side{ padding: 18px; }
+    .main{ padding: 18px; }
+
+    .avatar{
+      width: 86px; height: 86px;
+      border-radius: 22px;
+      border: 1px solid rgba(214,178,94,.55);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 12px 40px rgba(214,178,94,.18);
+      overflow:hidden;
+      margin-bottom: 12px;
+    }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .name{
+      margin:0;
+      font-size: 26px;
+      line-height: 1.1;
+      letter-spacing: -.4px;
+      font-weight: 1000;
+    }
+    .title{
+      margin: 6px 0 10px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .list{
+      display:grid;
+      gap: 10px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+    .li{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      color: var(--text);
+    }
+    .li small{ color: var(--muted); display:block; font-weight:800; margin-top:2px; }
+
+    .icon{
+      width: 18px; height: 18px;
+      opacity: .95;
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .pillset{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: .15px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+      font-weight: 1000;
+    }
+    .section{
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .section:first-child{ border-top:none; padding-top:0; }
+
+    .summary{
+      margin: 0;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .item{
+      display:grid;
+      gap: 6px;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      margin-top: 10px;
+    }
+    .item-head{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .item-title{
+      font-weight: 1000;
+      letter-spacing: -.2px;
+    }
+    .item-meta{
+      color: var(--muted);
+      font-weight: 850;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .item p{
+      margin:0;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .bullets li{ margin: 5px 0; }
+
+    .hidden{ display:none !important; }
+
+    /* ✅ Contact form */
+    .error{
+      min-height: 16px;
+      font-size: 12px;
+      font-weight: 850;
+      color: #ffb3b3;
+    }
+    .form__status{
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 800;
+      min-height: 18px;
+    }
+
+    @media (max-width: 980px){
+      .builder{ grid-template-columns: 1fr; }
+      .cv{ grid-template-columns: 1fr; }
+      .logo{ min-width:auto; }
+      .fieldRow{ grid-template-columns: 1fr; }
+    }
+
+    @media print{
+      .header, #builder, #about, #contact, #contactFormCard, .toolbarTop { display:none !important; }
+      body{ background:#fff !important; color:#111 !important; }
+      .wrap{ margin:0; max-width:none; padding:0; }
+      .card{ box-shadow:none !important; border: 1px solid #ddd !important; background:#fff !important; }
+      .summary, .item p, .bullets, .title, .item-meta, .muted{ color:#444 !important; }
+      .pill{ border-color:#ddd !important; }
+      a{ text-decoration:none !important; }
+      #cvPreviewCard{ display:block !important; }
+    }
+
+    html[dir="rtl"] .bullets{ padding-right: 18px; padding-left: 0; }
+  </style>
+</head>
+
+<body>
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="logo" href="#top" aria-label="Retour en haut">
+        <span class="logo__mark" aria-hidden="true">
+          <img id="headerPhoto" alt="Photo" src="WhatsApp Image 2026-01-02 at 10.33.22.jpeg" />
+        </span>
+        <span class="logo__text">
+          <span id="headerName">Votre Nom</span>
+          <small id="logoTagline">Page personnelle</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <a class="nav__link" href="projets.html" rel="noreferrer" id="navProjects">Projets</a>
+        <a class="nav__link" href="CV.html" rel="noreferrer" id="navCv">CV</a>
+
+        <a class="nav__link" href="LOGIN.html" id="navLogin">Login</a>
+        <a class="nav__link" href="#contact" id="navContact">Contact</a>
+
+        <a class="nav__link" href="index.html" id="navHome">Page principale</a>
+
+        <select class="langSelect" id="langSelect" aria-label="Langue">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+          <option value="ar">AR</option>
+          <option value="dar">DAR</option>
+        </select>
+
+        <a class="btn btn--gold" id="waBtn"
+           href="https://api.whatsapp.com/send?phone=212000000000&text=Bonjour"
+           rel="noreferrer">
+          <span id="waLabel">WhatsApp</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="card toolbarTop">
+      <div class="card__pad">
+        <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+          <div>
+            <div style="font-weight:1000; font-size:18px;" id="tbTitle">CV Builder</div>
+            <div class="muted" id="tbHint">Remplis ➜ Save ➜ CV ➜ Imprimer ➜ Modifier. (Les champs vides sont ignorés.)</div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn--danger" id="btnReset" type="button">Reset</button>
+            <button class="btn" id="btnLoad" type="button">Load Saved</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- ABOUT (فوق) -->
+      <section class="card" id="about">
+        <div class="card__pad">
+          <h2 class="sectionTitle" id="aboutTitle">À propos</h2>
+          <p class="muted" id="aboutText">—</p>
+        </div>
+      </section>
+
+      <!-- BUILDER -->
+      <section class="card" id="builder">
+        <div class="card__pad">
+          <h2 class="sectionTitle" id="fillTitle">Remplir les infos</h2>
+          <div class="builder">
+            <div class="builder__left">
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbName">Nom complet</label>
+                  <input id="inName" type="text" placeholder="Ex: Ibrahim Beddouri" />
+                </div>
+                <div class="field">
+                  <label id="lbHeadline">Titre (headline)</label>
+                  <input id="inHeadline" type="text" placeholder="Ex: Étudiant — Développement Digital" />
+                </div>
+              </div>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbAge">Âge</label>
+                  <input id="inAge" type="text" placeholder="Ex: 18" />
+                </div>
+                <div class="field">
+                  <label id="lbBac">Baccalauréat (année)</label>
+                  <input id="inBac" type="text" placeholder="Ex: 2025" />
+                </div>
+              </div>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbPhone">Téléphone</label>
+                  <input id="inPhone" type="text" placeholder="+212 ..." />
+                </div>
+                <div class="field">
+                  <label id="lbEmail">Email</label>
+                  <input id="inEmail" type="email" placeholder="name@gmail.com" />
+                </div>
+              </div>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbWa">WhatsApp (numéro international)</label>
+                  <input id="inWa" type="text" placeholder="2127xxxxxxxx" />
+                  <div class="hint" id="hintWa">Ex: 212779354634 (sans +)</div>
+                </div>
+                <div class="field">
+                  <label id="lbWaMsg">Message WhatsApp</label>
+                  <input id="inWaMsg" type="text" placeholder="Bonjour, je veux vous contacter." />
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="field">
+                <label id="lbProfile">Profil (texte)</label>
+                <textarea id="inProfile" placeholder="Écris un petit paragraphe..."></textarea>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbSkills">Compétences (séparées par virgule)</label>
+                  <input id="inSkills" type="text" placeholder="HTML, CSS, JavaScript, PHP..." />
+                </div>
+                <div class="field">
+                  <label id="lbStrengths">Atouts (séparées par virgule)</label>
+                  <input id="inStrengths" type="text" placeholder="Motivé, Sérieux, Esprit d’équipe..." />
+                </div>
+              </div>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbLang1">Langue 1</label>
+                  <input id="inLang1" type="text" placeholder="Ex: Arabe — courant" />
+                </div>
+                <div class="field">
+                  <label id="lbLang2">Langue 2</label>
+                  <input id="inLang2" type="text" placeholder="Ex: Français — niveau de base" />
+                </div>
+              </div>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbLang3">Langue 3</label>
+                  <input id="inLang3" type="text" placeholder="Ex: Anglais — niveau de base" />
+                </div>
+                <div class="field">
+                  <label></label>
+                  <div class="hint" id="hintLang">Laisse vide si tu n'en as pas.</div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <h3 class="sectionTitle" style="font-size:16px; margin-top:0;" id="eduTitle">Formation</h3>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbEdu1Title">Titre (Formation 1)</label>
+                  <input id="inEdu1Title" type="text" placeholder="Diplôme — Développement Digital" />
+                </div>
+                <div class="field">
+                  <label id="lbEdu1Meta">Année / Meta</label>
+                  <input id="inEdu1Meta" type="text" placeholder="2027 (prévu)" />
+                </div>
+              </div>
+              <div class="field">
+                <label id="lbEdu1Text">Description (Formation 1)</label>
+                <textarea id="inEdu1Text" placeholder="Description..."></textarea>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbEdu2Title">Titre (Formation 2)</label>
+                  <input id="inEdu2Title" type="text" placeholder="Baccalauréat" />
+                </div>
+                <div class="field">
+                  <label id="lbEdu2Meta">Année / Meta</label>
+                  <input id="inEdu2Meta" type="text" placeholder="2025" />
+                </div>
+              </div>
+              <div class="field">
+                <label id="lbEdu2Text">Description (Formation 2)</label>
+                <textarea id="inEdu2Text" placeholder="Description..."></textarea>
+              </div>
+            </div>
+
+            <div class="builder__right">
+              <h3 class="sectionTitle" style="font-size:16px; margin-top:0;" id="photoTitle">Photo</h3>
+
+              <div class="previewPhoto"><img id="photoPreview" alt="Preview" src="" /></div>
+
+              <div class="field">
+                <label id="lbUpload">Upload photo</label>
+                <input id="inPhoto" type="file" accept="image/*" />
+                <div class="hint" id="hintUpload">PNG/JPG… la photo apparaît dans le header et le CV.</div>
+              </div>
+
+              <div class="divider"></div>
+
+              <h3 class="sectionTitle" style="font-size:16px; margin-top:0;" id="expTitle">Expérience</h3>
+
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbExpTitle">Titre</label>
+                  <input id="inExpTitle" type="text" placeholder="Stage — Royal Air Force" />
+                </div>
+                <div class="field">
+                  <label id="lbExpMeta">Meta</label>
+                  <input id="inExpMeta" type="text" placeholder="Stage" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label id="lbExpText">Description</label>
+                <textarea id="inExpText" placeholder="Description..."></textarea>
+              </div>
+
+              <div class="field">
+                <label id="lbExpBullets">Points (1 par ligne)</label>
+                <textarea id="inExpBullets" placeholder="Ex:
+Collaboration avec l’équipe...
+Organisation...
+Adaptation..."></textarea>
+              </div>
+
+              <div class="divider"></div>
+
+              <h3 class="sectionTitle" style="font-size:16px; margin-top:0;" id="projectsTitle">Projets</h3>
+
+              <div class="field">
+                <label id="lbProj1">Projet 1 (titre)</label>
+                <input id="inProj1Title" type="text" placeholder="Page personnelle (portfolio)" />
+              </div>
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbTech">Tech</label>
+                  <input id="inProj1Tech" type="text" placeholder="HTML • CSS" />
+                </div>
+                <div class="field">
+                  <label id="lbDesc">Description</label>
+                  <input id="inProj1Text" type="text" placeholder="Description courte..." />
+                </div>
+              </div>
+
+              <div class="field">
+                <label id="lbProj2">Projet 2 (titre)</label>
+                <input id="inProj2Title" type="text" placeholder="Page de connexion (Login)" />
+              </div>
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbTech2">Tech</label>
+                  <input id="inProj2Tech" type="text" placeholder="HTML • CSS • JS" />
+                </div>
+                <div class="field">
+                  <label id="lbDesc2">Description</label>
+                  <input id="inProj2Text" type="text" placeholder="Description courte..." />
+                </div>
+              </div>
+
+              <div class="field">
+                <label id="lbProj3">Projet 3 (titre)</label>
+                <input id="inProj3Title" type="text" placeholder="Page de vente (E-commerce)" />
+              </div>
+              <div class="fieldRow">
+                <div class="field">
+                  <label id="lbTech3">Tech</label>
+                  <input id="inProj3Tech" type="text" placeholder="HTML • CSS • JS" />
+                </div>
+                <div class="field">
+                  <label id="lbDesc3">Description</label>
+                  <input id="inProj3Text" type="text" placeholder="Description courte..." />
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="toolbar">
+                <button class="btn btn--gold" id="btnSave" type="button">Save</button>
+                <button class="btn" id="btnShow" type="button">Voir CV</button>
+              </div>
+              <div class="hint" style="margin-top:8px;" id="hintSave">Save يخزن فالمتصفح (LocalStorage).</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CV Preview -->
+      <section class="card hidden" id="cvPreviewCard">
+        <div class="card__pad">
+          <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center;">
+            <h2 class="sectionTitle" id="previewTitle">CV — Preview</h2>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn" id="btnModify" type="button">Modifier</button>
+              <button class="btn btn--gold" id="btnPrint" type="button">Imprimer</button>
+            </div>
+          </div>
+
+          <div class="cv card" style="box-shadow:none; margin-top:12px;">
+            <!-- Sidebar -->
+            <aside class="side">
+              <div class="avatar hidden" id="cvAvatarWrap"><img id="cvPhoto" alt="Photo" src="" /></div>
+              <h1 class="name" id="cvName">—</h1>
+              <div class="title hidden" id="cvHeadlineWrap"><span id="cvHeadline"></span></div>
+
+              <div class="divider hidden" id="cvContactDivider"></div>
+
+              <ul class="list hidden" aria-label="Coordonnées" id="cvContactList">
+                <li class="li hidden" id="liAgeBac">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6.5 3.5h11l2 3v14a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-14l2-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M7 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <div>
+                    <div id="cvAge"></div>
+                    <small id="cvBac"></small>
+                  </div>
+                </li>
+
+                <li class="li hidden" id="liPhone">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M22 16.5v2a2.5 2.5 0 0 1-2.5 2.5h-1c-7.18 0-13-5.82-13-13v-1A2.5 2.5 0 0 1 8 2.5h2a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-1.1 2.1l-1.3.65a10 10 0 0 0 4.6 4.6l.65-1.3a2 2 0 0 1 2.1-1.1l3 .5a2 2 0 0 1 1.7 2Z"
+                          stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                  <div>
+                    <div id="cvPhone"></div>
+                    <small id="cvPhoneLabel">Téléphone</small>
+                  </div>
+                </li>
+
+                <li class="li hidden" id="liEmail">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <div>
+                    <a id="cvEmailLink" href="mailto:"></a>
+                    <small id="cvEmailLabel">Email</small>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="divider hidden" id="cvSkillsDivider"></div>
+              <div id="cvSkillsSection" class="hidden">
+                <h2 id="cvSkillsTitle">Compétences</h2>
+                <div class="pillset" id="cvSkills"></div>
+              </div>
+
+              <div class="divider hidden" id="cvLangsDivider"></div>
+              <div id="cvLangsSection" class="hidden">
+                <h2 id="cvLangsTitle">Langues</h2>
+                <div class="pillset" id="cvLangs"></div>
+              </div>
+            </aside>
+
+            <!-- Main -->
+            <section class="main">
+              <div class="section hidden" id="secProfile">
+                <h2 id="cvProfileTitle">Profil</h2>
+                <p class="summary" id="cvProfileText"></p>
+              </div>
+
+              <div class="section hidden" id="secEdu">
+                <h2 id="cvEduTitle">Formation</h2>
+
+                <div class="item hidden" id="edu1Item">
+                  <div class="item-head">
+                    <div class="item-title" id="cvEdu1Title"></div>
+                    <div class="item-meta" id="cvEdu1Meta"></div>
+                  </div>
+                  <p id="cvEdu1Text"></p>
+                </div>
+
+                <div class="item hidden" id="edu2Item">
+                  <div class="item-head">
+                    <div class="item-title" id="cvEdu2Title"></div>
+                    <div class="item-meta" id="cvEdu2Meta"></div>
+                  </div>
+                  <p id="cvEdu2Text"></p>
+                </div>
+              </div>
+
+              <div class="section hidden" id="secExp">
+                <h2 id="cvExpTitleH">Expérience</h2>
+
+                <div class="item">
+                  <div class="item-head">
+                    <div class="item-title" id="cvExpTitle"></div>
+                    <div class="item-meta" id="cvExpMeta"></div>
+                  </div>
+                  <p id="cvExpText"></p>
+                  <ul class="bullets" id="cvExpBullets"></ul>
+                </div>
+              </div>
+
+              <div class="section hidden" id="secProjects">
+                <h2 id="cvProjectsTitle">Projets</h2>
+
+                <div class="item hidden" id="proj1Item">
+                  <div class="item-head">
+                    <div class="item-title" id="cvProj1Title"></div>
+                    <div class="item-meta" id="cvProj1Tech"></div>
+                  </div>
+                  <p id="cvProj1Text"></p>
+                </div>
+
+                <div class="item hidden" id="proj2Item">
+                  <div class="item-head">
+                    <div class="item-title" id="cvProj2Title"></div>
+                    <div class="item-meta" id="cvProj2Tech"></div>
+                  </div>
+                  <p id="cvProj2Text"></p>
+                </div>
+
+                <div class="item hidden" id="proj3Item">
+                  <div class="item-head">
+                    <div class="item-title" id="cvProj3Title"></div>
+                    <div class="item-meta" id="cvProj3Tech"></div>
+                  </div>
+                  <p id="cvProj3Text"></p>
+                </div>
+              </div>
+
+              <div class="section hidden" id="secStrengths">
+                <h2 id="cvStrengthsTitle">Atouts</h2>
+                <div class="pillset" id="cvStrengths"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ CONTACT (دابا راه لتحت كامل) -->
+      <section class="card" id="contact">
+        <div class="card__pad">
+          <h2 class="sectionTitle" id="contactTitle">Contact</h2>
+          <p class="muted" id="contactText">—</p>
+        </div>
+      </section>
+
+      <!-- ✅ FORM (لتحت كامل + Nom ثم Email ثم Message) -->
+      <section class="card" id="contactFormCard">
+        <div class="card__pad">
+          <h2 class="sectionTitle" id="cfTitle">Envoyer un message</h2>
+          <p class="muted" id="cfHint">Remplis le formulaire وكيحل WhatsApp مباشرة.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="field">
+              <label id="cfNameLabel" for="cfName">Nom</label>
+              <input id="cfName" name="cfName" type="text" placeholder="Votre nom" required minlength="2" />
+              <div class="error" id="errName"></div>
+            </div>
+
+            <div class="field">
+              <label id="cfEmailLabel" for="cfEmail">Email</label>
+              <input id="cfEmail" name="cfEmail" type="email" placeholder="vous@email.com" required />
+              <div class="error" id="errEmail"></div>
+            </div>
+
+            <div class="field">
+              <label id="cfMsgLabel" for="cfMsg">Message</label>
+              <textarea id="cfMsg" name="cfMsg" rows="5" placeholder="Votre message..." required minlength="10"></textarea>
+              <div class="error" id="errMsg"></div>
+            </div>
+
+            <div class="toolbar" style="justify-content:flex-start;">
+              <button class="btn btn--gold" id="cfSend" type="submit">Envoyer (WhatsApp)</button>
+            </div>
+
+            <div class="form__status" id="cfStatus" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const state = { photoDataUrl: "" };
+
+    const safeText = (v) => (v ?? "").toString().trim();
+    const hasText = (v) => safeText(v).length > 0;
+
+    function pillsFromCSV(csv){
+      return safeText(csv)
+        .split(",")
+        .map(x => x.trim())
+        .filter(Boolean)
+        .map(t => ({t}));
+    }
+
+    function pillsFromLines(lines){
+      return safeText(lines)
+        .split("\\n")
+        .map(x => x.trim())
+        .filter(Boolean)
+        .map(t => ({t}));
+    }
+
+    function renderPills(container, items){
+      container.innerHTML = "";
+      items.forEach(({t}) => {
+        const s = document.createElement("span");
+        s.className = "pill";
+        s.textContent = t;
+        container.appendChild(s);
+      });
+    }
+
+    function show(el){ el.classList.remove("hidden"); }
+    function hide(el){ el.classList.add("hidden"); }
+
+    /* =========================
+       ✅ LANGUAGES (FR / EN / AR / DAR)
+       ========================= */
+    const I18N = {
+      fr: {
+        dir: "ltr",
+        logoTagline: "Page personnelle",
+        navProjects: "Projets",
+        navCv: "CV",
+        navLogin: "Login",
+        navContact: "Contact",
+        navHome: "Page principale",
+        waLabel: "WhatsApp",
+
+        tbTitle: "CV Builder",
+        tbHint: "Remplis ➜ Save ➜ CV ➜ Imprimer ➜ Modifier. (Les champs vides sont ignorés.)",
+        btnReset: "Reset",
+        btnLoad: "Load Saved",
+
+        aboutTitle: "À propos",
+        contactTitle: "Contact",
+        fillTitle: "Remplir les infos",
+
+        cfTitle: "Envoyer un message",
+        cfHint: "Remplis le formulaire وكيحل WhatsApp مباشرة.",
+        cfNameLabel: "Nom",
+        cfNamePh: "Votre nom",
+        cfEmailLabel: "Email",
+        cfEmailPh: "vous@email.com",
+        cfMsgLabel: "Message",
+        cfMsgPh: "Votre message...",
+        cfSend: "Envoyer (WhatsApp)",
+        errName: "Nom trop court.",
+        errEmail: "Email غير صالح.",
+        errMsg: "Écris un message plus long (min 10).",
+
+        lbName: "Nom complet",
+        phName: "Ex: Ibrahim Beddouri",
+        lbHeadline: "Titre (headline)",
+        phHeadline: "Ex: Étudiant — Développement Digital",
+        lbAge: "Âge",
+        phAge: "Ex: 18",
+        lbBac: "Baccalauréat (année)",
+        phBac: "Ex: 2025",
+        lbPhone: "Téléphone",
+        phPhone: "+212 ...",
+        lbEmail: "Email",
+        phEmail: "name@gmail.com",
+        lbWa: "WhatsApp (numéro international)",
+        phWa: "2127xxxxxxxx",
+        hintWa: "Ex: 212779354634 (sans +)",
+        lbWaMsg: "Message WhatsApp",
+        phWaMsg: "Bonjour, je veux vous contacter.",
+        lbProfile: "Profil (texte)",
+        phProfile: "Écris un petit paragraphe...",
+
+        lbSkills: "Compétences (séparées par virgule)",
+        phSkills: "HTML, CSS, JavaScript, PHP...",
+        lbStrengths: "Atouts (séparées par virgule)",
+        phStrengths: "Motivé, Sérieux, Esprit d’équipe...",
+
+        lbLang1: "Langue 1",
+        phLang1: "Ex: Arabe — courant",
+        lbLang2: "Langue 2",
+        phLang2: "Ex: Français — niveau de base",
+        lbLang3: "Langue 3",
+        phLang3: "Ex: Anglais — niveau de base",
+        hintLang: "Laisse vide si tu n'en as pas.",
+
+        eduTitle: "Formation",
+        lbEdu1Title: "Titre (Formation 1)",
+        phEdu1Title: "Diplôme — Développement Digital",
+        lbEdu1Meta: "Année / Meta",
+        phEdu1Meta: "2027 (prévu)",
+        lbEdu1Text: "Description (Formation 1)",
+        phEdu1Text: "Description...",
+
+        lbEdu2Title: "Titre (Formation 2)",
+        phEdu2Title: "Baccalauréat",
+        lbEdu2Meta: "Année / Meta",
+        phEdu2Meta: "2025",
+        lbEdu2Text: "Description (Formation 2)",
+        phEdu2Text: "Description...",
+
+        photoTitle: "Photo",
+        lbUpload: "Upload photo",
+        hintUpload: "PNG/JPG… la photo apparaît dans le header et le CV.",
+
+        expTitle: "Expérience",
+        lbExpTitle: "Titre",
+        phExpTitle: "Stage — Royal Air Force",
+        lbExpMeta: "Meta",
+        phExpMeta: "Stage",
+        lbExpText: "Description",
+        phExpText: "Description...",
+        lbExpBullets: "Points (1 par ligne)",
+        phExpBullets: "Ex:\\nCollaboration avec l’équipe...\\nOrganisation...\\nAdaptation...",
+
+        projectsTitle: "Projets",
+        lbProj1: "Projet 1 (titre)",
+        phProj1: "Page personnelle (portfolio)",
+        lbTech: "Tech",
+        phTech1: "HTML • CSS",
+        lbDesc: "Description",
+        phDesc1: "Description courte...",
+
+        lbProj2: "Projet 2 (titre)",
+        phProj2: "Page de connexion (Login)",
+        phTech2: "HTML • CSS • JS",
+        phDesc2: "Description courte...",
+
+        lbProj3: "Projet 3 (titre)",
+        phProj3: "Page de vente (E-commerce)",
+        phTech3: "HTML • CSS • JS",
+        phDesc3: "Description courte...",
+
+        btnSave: "Save",
+        btnShow: "Voir CV",
+        hintSave: "Save يخزن فالمتصفح (LocalStorage).",
+
+        previewTitle: "CV — Preview",
+        btnModify: "Modifier",
+        btnPrint: "Imprimer",
+
+        cvPhoneLabel: "Téléphone",
+        cvEmailLabel: "Email",
+        cvSkillsTitle: "Compétences",
+        cvLangsTitle: "Langues",
+        cvProfileTitle: "Profil",
+        cvEduTitle: "Formation",
+        cvExpTitleH: "Expérience",
+        cvProjectsTitle: "Projets",
+        cvStrengthsTitle: "Atouts",
+
+        alertNeedName: "Svp: écris ton nom (Nom complet).",
+        alertNoSave: "Aucune sauvegarde trouvée.",
+        alertLoaded: "Loaded ✅",
+        confirmReset: "Reset: supprimer tout ?",
+        cfSent: "Opening WhatsApp..."
+      },
+
+      en: {
+        dir: "ltr",
+        logoTagline: "Personal page",
+        navProjects: "Projects",
+        navCv: "CV",
+        navLogin: "Login",
+        navContact: "Contact",
+        navHome: "Home",
+        waLabel: "WhatsApp",
+
+        tbTitle: "CV Builder",
+        tbHint: "Fill ➜ Save ➜ CV ➜ Print ➜ Edit. (Empty fields are ignored.)",
+        btnReset: "Reset",
+        btnLoad: "Load Saved",
+
+        aboutTitle: "About",
+        contactTitle: "Contact",
+        fillTitle: "Fill your info",
+
+        cfTitle: "Send a message",
+        cfHint: "Fill the form and WhatsApp opens directly.",
+        cfNameLabel: "Name",
+        cfNamePh: "Your name",
+        cfEmailLabel: "Email",
+        cfEmailPh: "you@email.com",
+        cfMsgLabel: "Message",
+        cfMsgPh: "Your message...",
+        cfSend: "Send (WhatsApp)",
+        errName: "Name is too short.",
+        errEmail: "Invalid email.",
+        errMsg: "Write a longer message (min 10).",
+
+        lbName: "Full name",
+        phName: "e.g. Ibrahim Beddouri",
+        lbHeadline: "Headline (title)",
+        phHeadline: "e.g. Student — Digital Development",
+        lbAge: "Age",
+        phAge: "e.g. 18",
+        lbBac: "Baccalaureate (year)",
+        phBac: "e.g. 2025",
+        lbPhone: "Phone",
+        phPhone: "+212 ...",
+        lbEmail: "Email",
+        phEmail: "name@gmail.com",
+        lbWa: "WhatsApp (international number)",
+        phWa: "2127xxxxxxxx",
+        hintWa: "Example: 212779354634 (no +)",
+        lbWaMsg: "WhatsApp message",
+        phWaMsg: "Hello, I want to contact you.",
+        lbProfile: "Profile (text)",
+        phProfile: "Write a short paragraph...",
+
+        lbSkills: "Skills (comma separated)",
+        phSkills: "HTML, CSS, JavaScript, PHP...",
+        lbStrengths: "Strengths (comma separated)",
+        phStrengths: "Motivated, Reliable, Team spirit...",
+
+        lbLang1: "Language 1",
+        phLang1: "e.g. Arabic — fluent",
+        lbLang2: "Language 2",
+        phLang2: "e.g. French — basic",
+        lbLang3: "Language 3",
+        phLang3: "e.g. English — basic",
+        hintLang: "Leave empty if you don't have it.",
+
+        eduTitle: "Education",
+        lbEdu1Title: "Title (Education 1)",
+        phEdu1Title: "Diploma — Digital Development",
+        lbEdu1Meta: "Year / Meta",
+        phEdu1Meta: "2027 (expected)",
+        lbEdu1Text: "Description (Education 1)",
+        phEdu1Text: "Description...",
+
+        lbEdu2Title: "Title (Education 2)",
+        phEdu2Title: "Baccalaureate",
+        lbEdu2Meta: "Year / Meta",
+        phEdu2Meta: "2025",
+        lbEdu2Text: "Description (Education 2)",
+        phEdu2Text: "Description...",
+
+        photoTitle: "Photo",
+        lbUpload: "Upload photo",
+        hintUpload: "PNG/JPG… the photo appears in the header and the CV.",
+
+        expTitle: "Experience",
+        lbExpTitle: "Title",
+        phExpTitle: "Internship — Royal Air Force",
+        lbExpMeta: "Meta",
+        phExpMeta: "Internship",
+        lbExpText: "Description",
+        phExpText: "Description...",
+        lbExpBullets: "Bullet points (1 per line)",
+        phExpBullets: "Ex:\\nWorked with the team...\\nOrganization...\\nQuick adaptation...",
+
+        projectsTitle: "Projects",
+        lbProj1: "Project 1 (title)",
+        phProj1: "Personal page (portfolio)",
+        lbTech: "Tech",
+        phTech1: "HTML • CSS",
+        lbDesc: "Description",
+        phDesc1: "Short description...",
+
+        lbProj2: "Project 2 (title)",
+        phProj2: "Login page",
+        phTech2: "HTML • CSS • JS",
+        phDesc2: "Short description...",
+
+        lbProj3: "Project 3 (title)",
+        phProj3: "Sales page (E-commerce)",
+        phTech3: "HTML • CSS • JS",
+        phDesc3: "Short description...",
+
+        btnSave: "Save",
+        btnShow: "View CV",
+        hintSave: "Save is stored in your browser (LocalStorage).",
+
+        previewTitle: "CV — Preview",
+        btnModify: "Edit",
+        btnPrint: "Print",
+
+        cvPhoneLabel: "Phone",
+        cvEmailLabel: "Email",
+        cvSkillsTitle: "Skills",
+        cvLangsTitle: "Languages",
+        cvProfileTitle: "Profile",
+        cvEduTitle: "Education",
+        cvExpTitleH: "Experience",
+        cvProjectsTitle: "Projects",
+        cvStrengthsTitle: "Strengths",
+
+        alertNeedName: "Please enter your name (Full name).",
+        alertNoSave: "No saved data found.",
+        alertLoaded: "Loaded ✅",
+        confirmReset: "Reset: delete everything?",
+        cfSent: "Opening WhatsApp..."
+      },
+
+      ar: {
+        dir: "rtl",
+        logoTagline: "صفحة شخصية",
+        navProjects: "المشاريع",
+        navCv: "السيرة الذاتية",
+        navLogin: "تسجيل الدخول",
+        navContact: "تواصل",
+        navHome: "الصفحة الرئيسية",
+        waLabel: "واتساب",
+
+        tbTitle: "منشئ السيرة الذاتية",
+        tbHint: "عَمّر ➜ حفظ ➜ السيرة ➜ طبع ➜ تعديل. (الحقول الفارغة يتم تجاهلها.)",
+        btnReset: "إعادة ضبط",
+        btnLoad: "تحميل المحفوظ",
+
+        aboutTitle: "نبذة عني",
+        contactTitle: "تواصل",
+        fillTitle: "عَمّر المعلومات",
+
+        cfTitle: "إرسال رسالة",
+        cfHint: "املأ النموذج وسيتم فتح واتساب مباشرة.",
+        cfNameLabel: "الاسم",
+        cfNamePh: "اسمك",
+        cfEmailLabel: "البريد الإلكتروني",
+        cfEmailPh: "you@email.com",
+        cfMsgLabel: "الرسالة",
+        cfMsgPh: "اكتب رسالتك...",
+        cfSend: "إرسال (واتساب)",
+        errName: "الاسم قصير جدًا.",
+        errEmail: "البريد غير صالح.",
+        errMsg: "اكتب رسالة أطول (10 أحرف على الأقل).",
+
+        lbName: "الاسم الكامل",
+        phName: "مثال: Ibrahim Beddouri",
+        lbHeadline: "العنوان (Headline)",
+        phHeadline: "مثال: طالب — تطوير رقمي",
+        lbAge: "العمر",
+        phAge: "مثال: 18",
+        lbBac: "البكالوريا (السنة)",
+        phBac: "مثال: 2025",
+        lbPhone: "الهاتف",
+        phPhone: "+212 ...",
+        lbEmail: "البريد الإلكتروني",
+        phEmail: "name@gmail.com",
+        lbWa: "واتساب (رقم دولي)",
+        phWa: "2127xxxxxxxx",
+        hintWa: "مثال: 212779354634 (بدون +)",
+        lbWaMsg: "رسالة واتساب",
+        phWaMsg: "السلام عليكم، أريد التواصل معك.",
+        lbProfile: "الملف الشخصي (نص)",
+        phProfile: "اكتب فقرة قصيرة...",
+
+        lbSkills: "المهارات (افصل بفواصل)",
+        phSkills: "HTML, CSS, JavaScript, PHP...",
+        lbStrengths: "نقاط القوة (افصل بفواصل)",
+        phStrengths: "متحمس، جاد، روح الفريق...",
+
+        lbLang1: "اللغة 1",
+        phLang1: "مثال: العربية — جيد",
+        lbLang2: "اللغة 2",
+        phLang2: "مثال: الفرنسية — مستوى أساسي",
+        lbLang3: "اللغة 3",
+        phLang3: "مثال: الإنجليزية — مستوى أساسي",
+        hintLang: "اتركه فارغًا إذا لا توجد.",
+
+        eduTitle: "الدراسة",
+        lbEdu1Title: "العنوان (دراسة 1)",
+        phEdu1Title: "دبلوم — تطوير رقمي",
+        lbEdu1Meta: "السنة / معلومات",
+        phEdu1Meta: "2027 (متوقع)",
+        lbEdu1Text: "الوصف (دراسة 1)",
+        phEdu1Text: "وصف...",
+
+        lbEdu2Title: "العنوان (دراسة 2)",
+        phEdu2Title: "البكالوريا",
+        lbEdu2Meta: "السنة / معلومات",
+        phEdu2Meta: "2025",
+        lbEdu2Text: "الوصف (دراسة 2)",
+        phEdu2Text: "وصف...",
+
+        photoTitle: "الصورة",
+        lbUpload: "رفع صورة",
+        hintUpload: "PNG/JPG… تظهر الصورة في الهيدر والسيرة.",
+
+        expTitle: "الخبرة",
+        lbExpTitle: "العنوان",
+        phExpTitle: "تدريب — Royal Air Force",
+        lbExpMeta: "معلومات",
+        phExpMeta: "تدريب",
+        lbExpText: "الوصف",
+        phExpText: "وصف...",
+        lbExpBullets: "نقاط (كل سطر نقطة)",
+        phExpBullets: "مثال:\\nالعمل مع الفريق...\\nالانضباط...\\nالتكيف بسرعة...",
+
+        projectsTitle: "المشاريع",
+        lbProj1: "مشروع 1 (عنوان)",
+        phProj1: "صفحة شخصية (Portfolio)",
+        lbTech: "التقنيات",
+        phTech1: "HTML • CSS",
+        lbDesc: "الوصف",
+        phDesc1: "وصف قصير...",
+
+        lbProj2: "مشروع 2 (عنوان)",
+        phProj2: "صفحة تسجيل الدخول",
+        phTech2: "HTML • CSS • JS",
+        phDesc2: "وصف قصير...",
+
+        lbProj3: "مشروع 3 (عنوان)",
+        phProj3: "صفحة بيع (E-commerce)",
+        phTech3: "HTML • CSS • JS",
+        phDesc3: "وصف قصير...",
+
+        btnSave: "حفظ",
+        btnShow: "عرض السيرة",
+        hintSave: "الحفظ يتم داخل المتصفح (LocalStorage).",
+
+        previewTitle: "السيرة — معاينة",
+        btnModify: "تعديل",
+        btnPrint: "طباعة",
+
+        cvPhoneLabel: "الهاتف",
+        cvEmailLabel: "البريد",
+        cvSkillsTitle: "المهارات",
+        cvLangsTitle: "اللغات",
+        cvProfileTitle: "الملف الشخصي",
+        cvEduTitle: "الدراسة",
+        cvExpTitleH: "الخبرة",
+        cvProjectsTitle: "المشاريع",
+        cvStrengthsTitle: "نقاط القوة",
+
+        alertNeedName: "من فضلك اكتب اسمك (الاسم الكامل).",
+        alertNoSave: "لا يوجد حفظ سابق.",
+        alertLoaded: "تم التحميل ✅",
+        confirmReset: "إعادة ضبط: حذف كل شيء؟",
+        cfSent: "سيتم فتح واتساب..."
+      },
+
+      dar: {
+        dir: "rtl",
+        logoTagline: "Saf7a chakhsiya",
+        navProjects: "Projets",
+        navCv: "CV",
+        navLogin: "Login",
+        navContact: "Contact",
+        navHome: "Page principale",
+        waLabel: "WhatsApp",
+
+        tbTitle: "CV Builder",
+        tbHint: "3mmer ➜ Save ➜ CV ➜ Print ➜ Modifier. (Chi champ khawi kayt3tla.)",
+        btnReset: "Reset",
+        btnLoad: "Load Saved",
+
+        aboutTitle: "3lia",
+        contactTitle: "Twasol",
+        fillTitle: "3mmer l infos",
+
+        cfTitle: "Sift رسالة",
+        cfHint: "3mmer w WhatsApp kayt7ell مباشرة.",
+        cfNameLabel: "Smiya",
+        cfNamePh: "Smiya dyalk",
+        cfEmailLabel: "Email",
+        cfEmailPh: "you@email.com",
+        cfMsgLabel: "Message",
+        cfMsgPh: "ktb msg...",
+        cfSend: "Sift (WhatsApp)",
+        errName: "Smiya 9ssira.",
+        errEmail: "Email mashi s7i7.",
+        errMsg: "ktb msg twila (10+).",
+
+        lbName: "Smiya كاملة",
+        phName: "Ex: Ibrahim Beddouri",
+        lbHeadline: "Titre",
+        phHeadline: "Ex: Taleb — Dev Digital",
+        lbAge: "3omr",
+        phAge: "Ex: 18",
+        lbBac: "Bac (l3am)",
+        phBac: "Ex: 2025",
+        lbPhone: "Tel",
+        phPhone: "+212 ...",
+        lbEmail: "Email",
+        phEmail: "name@gmail.com",
+        lbWa: "WhatsApp (رقم دولي)",
+        phWa: "2127xxxxxxxx",
+        hintWa: "Ex: 212779354634 (bla +)",
+        lbWaMsg: "Message WhatsApp",
+        phWaMsg: "Salam, bghit ntwassal m3ak.",
+        lbProfile: "Profil",
+        phProfile: "ktb chi paragraphe sghir...",
+
+        lbSkills: "Skills (b virgule)",
+        phSkills: "HTML, CSS, JavaScript, PHP...",
+        lbStrengths: "Atouts (b virgule)",
+        phStrengths: "Motivé, Sérieux, Team...",
+
+        lbLang1: "Langue 1",
+        phLang1: "Ex: Arabe — courant",
+        lbLang2: "Langue 2",
+        phLang2: "Ex: Français — basic",
+        lbLang3: "Langue 3",
+        phLang3: "Ex: English — basic",
+        hintLang: "Khlih khawi ila ma3ndkch.",
+
+        eduTitle: "Formation",
+        lbEdu1Title: "Titre (Formation 1)",
+        phEdu1Title: "Diplôme — Dev Digital",
+        lbEdu1Meta: "L3am / Meta",
+        phEdu1Meta: "2027 (prévu)",
+        lbEdu1Text: "Description (Formation 1)",
+        phEdu1Text: "Description...",
+
+        lbEdu2Title: "Titre (Formation 2)",
+        phEdu2Title: "Baccalauréat",
+        lbEdu2Meta: "L3am / Meta",
+        phEdu2Meta: "2025",
+        lbEdu2Text: "Description (Formation 2)",
+        phEdu2Text: "Description...",
+
+        photoTitle: "Tswiira",
+        lbUpload: "Upload tswiira",
+        hintUpload: "PNG/JPG… tswiira katban f header w CV.",
+
+        expTitle: "Expérience",
+        lbExpTitle: "Titre",
+        phExpTitle: "Stage — Royal Air Force",
+        lbExpMeta: "Meta",
+        phExpMeta: "Stage",
+        lbExpText: "Description",
+        phExpText: "Description...",
+        lbExpBullets: "Points (koul sطر)",
+        phExpBullets: "Ex:\\nKhddmt m3a l'équipe...\\nNidam...\\nTt2a9ll bسرعة...",
+
+        projectsTitle: "Projets",
+        lbProj1: "Projet 1",
+        phProj1: "Page personnelle",
+        lbTech: "Tech",
+        phTech1: "HTML • CSS",
+        lbDesc: "Description",
+        phDesc1: "Description sghira...",
+
+        lbProj2: "Projet 2",
+        phProj2: "Page Login",
+        phTech2: "HTML • CSS • JS",
+        phDesc2: "Description sghira...",
+
+        lbProj3: "Projet 3",
+        phProj3: "Page بيع",
+        phTech3: "HTML • CSS • JS",
+        phDesc3: "Description sghira...",
+
+        btnSave: "Save",
+        btnShow: "Chof CV",
+        hintSave: "Save kayt7fed f navigateur (LocalStorage).",
+
+        previewTitle: "CV — Preview",
+        btnModify: "Modifier",
+        btnPrint: "Imprimer",
+
+        cvPhoneLabel: "Tel",
+        cvEmailLabel: "Email",
+        cvSkillsTitle: "Skills",
+        cvLangsTitle: "Langues",
+        cvProfileTitle: "Profil",
+        cvEduTitle: "Formation",
+        cvExpTitleH: "Expérience",
+        cvProjectsTitle: "Projets",
+        cvStrengthsTitle: "Atouts",
+
+        alertNeedName: "3afak kteb smiytek (Nom complet).",
+        alertNoSave: "Ma kayn 7ta save.",
+        alertLoaded: "Loaded ✅",
+        confirmReset: "Reset: tms7 kolchi?",
+        cfSent: "Ghadi y7ell WhatsApp..."
+      }
+    };
+
+    function setText(id, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = value;
+    }
+    function setPlaceholder(id, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.placeholder = value;
+    }
+
+    function setLang(lang){
+      const dict = I18N[lang] || I18N.fr;
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = dict.dir || "ltr";
+
+      setText("logoTagline", dict.logoTagline);
+
+      setText("navProjects", dict.navProjects);
+      setText("navCv", dict.navCv);
+      setText("navLogin", dict.navLogin);
+      setText("navContact", dict.navContact);
+      setText("navHome", dict.navHome);
+      setText("waLabel", dict.waLabel);
+
+      setText("tbTitle", dict.tbTitle);
+      setText("tbHint", dict.tbHint);
+      $("btnReset").textContent = dict.btnReset;
+      $("btnLoad").textContent = dict.btnLoad;
+
+      setText("aboutTitle", dict.aboutTitle);
+      setText("contactTitle", dict.contactTitle);
+      setText("fillTitle", dict.fillTitle);
+
+      // ✅ Contact form i18n
+      setText("cfTitle", dict.cfTitle);
+      setText("cfHint", dict.cfHint);
+      setText("cfNameLabel", dict.cfNameLabel);
+      setPlaceholder("cfName", dict.cfNamePh);
+      setText("cfEmailLabel", dict.cfEmailLabel);
+      setPlaceholder("cfEmail", dict.cfEmailPh);
+      setText("cfMsgLabel", dict.cfMsgLabel);
+      setPlaceholder("cfMsg", dict.cfMsgPh);
+      setText("cfSend", dict.cfSend);
+
+      setText("lbName", dict.lbName);
+      setPlaceholder("inName", dict.phName);
+
+      setText("lbHeadline", dict.lbHeadline);
+      setPlaceholder("inHeadline", dict.phHeadline);
+
+      setText("lbAge", dict.lbAge);
+      setPlaceholder("inAge", dict.phAge);
+
+      setText("lbBac", dict.lbBac);
+      setPlaceholder("inBac", dict.phBac);
+
+      setText("lbPhone", dict.lbPhone);
+      setPlaceholder("inPhone", dict.phPhone);
+
+      setText("lbEmail", dict.lbEmail);
+      setPlaceholder("inEmail", dict.phEmail);
+
+      setText("lbWa", dict.lbWa);
+      setPlaceholder("inWa", dict.phWa);
+      setText("hintWa", dict.hintWa);
+
+      setText("lbWaMsg", dict.lbWaMsg);
+      setPlaceholder("inWaMsg", dict.phWaMsg);
+
+      setText("lbProfile", dict.lbProfile);
+      setPlaceholder("inProfile", dict.phProfile);
+
+      setText("lbSkills", dict.lbSkills);
+      setPlaceholder("inSkills", dict.phSkills);
+
+      setText("lbStrengths", dict.lbStrengths);
+      setPlaceholder("inStrengths", dict.phStrengths);
+
+      setText("lbLang1", dict.lbLang1);
+      setPlaceholder("inLang1", dict.phLang1);
+
+      setText("lbLang2", dict.lbLang2);
+      setPlaceholder("inLang2", dict.phLang2);
+
+      setText("lbLang3", dict.lbLang3);
+      setPlaceholder("inLang3", dict.phLang3);
+
+      setText("hintLang", dict.hintLang);
+
+      setText("eduTitle", dict.eduTitle);
+      setText("lbEdu1Title", dict.lbEdu1Title);
+      setPlaceholder("inEdu1Title", dict.phEdu1Title);
+      setText("lbEdu1Meta", dict.lbEdu1Meta);
+      setPlaceholder("inEdu1Meta", dict.phEdu1Meta);
+      setText("lbEdu1Text", dict.lbEdu1Text);
+      setPlaceholder("inEdu1Text", dict.phEdu1Text);
+
+      setText("lbEdu2Title", dict.lbEdu2Title);
+      setPlaceholder("inEdu2Title", dict.phEdu2Title);
+      setText("lbEdu2Meta", dict.lbEdu2Meta);
+      setPlaceholder("inEdu2Meta", dict.phEdu2Meta);
+      setText("lbEdu2Text", dict.lbEdu2Text);
+      setPlaceholder("inEdu2Text", dict.phEdu2Text);
+
+      setText("photoTitle", dict.photoTitle);
+      setText("lbUpload", dict.lbUpload);
+      setText("hintUpload", dict.hintUpload);
+
+      setText("expTitle", dict.expTitle);
+      setText("lbExpTitle", dict.lbExpTitle);
+      setPlaceholder("inExpTitle", dict.phExpTitle);
+      setText("lbExpMeta", dict.lbExpMeta);
+      setPlaceholder("inExpMeta", dict.phExpMeta);
+      setText("lbExpText", dict.lbExpText);
+      setPlaceholder("inExpText", dict.phExpText);
+      setText("lbExpBullets", dict.lbExpBullets);
+      setPlaceholder("inExpBullets", dict.phExpBullets);
+
+      setText("projectsTitle", dict.projectsTitle);
+
+      setText("lbProj1", dict.lbProj1);
+      setPlaceholder("inProj1Title", dict.phProj1);
+      setText("lbTech", dict.lbTech);
+      setPlaceholder("inProj1Tech", dict.phTech1);
+      setText("lbDesc", dict.lbDesc);
+      setPlaceholder("inProj1Text", dict.phDesc1);
+
+      setText("lbProj2", dict.lbProj2);
+      setPlaceholder("inProj2Title", dict.phProj2);
+      setText("lbTech2", dict.lbTech);
+      setPlaceholder("inProj2Tech", dict.phTech2);
+      setText("lbDesc2", dict.lbDesc);
+      setPlaceholder("inProj2Text", dict.phDesc2);
+
+      setText("lbProj3", dict.lbProj3);
+      setPlaceholder("inProj3Title", dict.phProj3);
+      setText("lbTech3", dict.lbTech);
+      setPlaceholder("inProj3Tech", dict.phTech3);
+      setText("lbDesc3", dict.lbDesc);
+      setPlaceholder("inProj3Text", dict.phDesc3);
+
+      $("btnSave").textContent = dict.btnSave;
+      $("btnShow").textContent = dict.btnShow;
+      setText("hintSave", dict.hintSave);
+
+      setText("previewTitle", dict.previewTitle);
+      $("btnModify").textContent = dict.btnModify;
+      $("btnPrint").textContent = dict.btnPrint;
+
+      setText("cvPhoneLabel", dict.cvPhoneLabel);
+      setText("cvEmailLabel", dict.cvEmailLabel);
+      setText("cvSkillsTitle", dict.cvSkillsTitle);
+      setText("cvLangsTitle", dict.cvLangsTitle);
+      setText("cvProfileTitle", dict.cvProfileTitle);
+      setText("cvEduTitle", dict.cvEduTitle);
+      setText("cvExpTitleH", dict.cvExpTitleH);
+      setText("cvProjectsTitle", dict.cvProjectsTitle);
+      setText("cvStrengthsTitle", dict.cvStrengthsTitle);
+
+      localStorage.setItem("cree_lang", lang);
+    }
+
+    (function initLang(){
+      const saved = localStorage.getItem("cree_lang") || "fr";
+      const sel = $("langSelect");
+      if (sel){
+        sel.value = saved;
+        sel.addEventListener("change", (e) => setLang(e.target.value));
+      }
+      setLang(saved);
+    })();
+
+    function buildData(){
+      return {
+        name: safeText($("inName").value),
+        headline: safeText($("inHeadline").value),
+        age: safeText($("inAge").value),
+        bac: safeText($("inBac").value),
+        phone: safeText($("inPhone").value),
+        email: safeText($("inEmail").value),
+        wa: safeText($("inWa").value),
+        waMsg: safeText($("inWaMsg").value),
+        profile: safeText($("inProfile").value),
+        skills: pillsFromCSV($("inSkills").value),
+        strengths: pillsFromCSV($("inStrengths").value),
+        langs: [safeText($("inLang1").value), safeText($("inLang2").value), safeText($("inLang3").value)]
+          .filter(Boolean).map(t => ({t})),
+        edu1: { title: safeText($("inEdu1Title").value), meta: safeText($("inEdu1Meta").value), text: safeText($("inEdu1Text").value) },
+        edu2: { title: safeText($("inEdu2Title").value), meta: safeText($("inEdu2Meta").value), text: safeText($("inEdu2Text").value) },
+        exp: {
+          title: safeText($("inExpTitle").value),
+          meta: safeText($("inExpMeta").value),
+          text: safeText($("inExpText").value),
+          bullets: pillsFromLines($("inExpBullets").value).map(x => x.t)
+        },
+        proj1: { title: safeText($("inProj1Title").value), tech: safeText($("inProj1Tech").value), text: safeText($("inProj1Text").value) },
+        proj2: { title: safeText($("inProj2Title").value), tech: safeText($("inProj2Tech").value), text: safeText($("inProj2Text").value) },
+        proj3: { title: safeText($("inProj3Title").value), tech: safeText($("inProj3Tech").value), text: safeText($("inProj3Text").value) },
+        photoDataUrl: state.photoDataUrl || ""
+      };
+    }
+
+    function applyToPage(data){
+      $("headerName").textContent = data.name || "Votre Nom";
+
+      if (data.photoDataUrl){
+        $("headerPhoto").src = data.photoDataUrl;
+        $("photoPreview").src = data.photoDataUrl;
+        $("cvPhoto").src = data.photoDataUrl;
+        show($("cvAvatarWrap"));
+      } else {
+        hide($("cvAvatarWrap"));
+      }
+
+      const waNumber = data.wa || "212000000000";
+      const msg = encodeURIComponent(data.waMsg || "Bonjour");
+      $("waBtn").href = `https://api.whatsapp.com/send?phone=${encodeURIComponent(waNumber)}&text=${msg}`;
+
+      $("aboutText").textContent = data.profile || "—";
+
+      const lang = localStorage.getItem("cree_lang") || "fr";
+      const contactLine =
+        `${data.phone ? ((lang==="en") ? "Phone: " : (lang==="ar" ? "الهاتف: " : "Téléphone : ")) + data.phone : ""}` +
+        `${(data.phone && data.email) ? "  |  " : ""}` +
+        `${data.email ? ((lang==="en") ? "Email: " : (lang==="ar" ? "البريد: " : "Email : ")) + data.email : ""}`;
+      $("contactText").textContent = contactLine || "—";
+
+      $("cvName").textContent = data.name || "—";
+      if (hasText(data.headline)){
+        $("cvHeadline").textContent = data.headline;
+        show($("cvHeadlineWrap"));
+      } else {
+        hide($("cvHeadlineWrap"));
+      }
+
+      const ageBacOk = hasText(data.age) || hasText(data.bac);
+      if (ageBacOk){
+        $("cvAge").textContent = hasText(data.age) ? (lang==="ar" ? `العمر : ${data.age}` : (lang==="en" ? `Age: ${data.age}` : `Âge : ${data.age}`)) : "";
+        $("cvBac").textContent = hasText(data.bac) ? (lang==="ar" ? `البكالوريا : ${data.bac}` : (lang==="en" ? `Baccalaureate: ${data.bac}` : `Baccalauréat : ${data.bac}`)) : "";
+        show($("liAgeBac"));
+      } else hide($("liAgeBac"));
+
+      if (hasText(data.phone)){
+        $("cvPhone").textContent = data.phone;
+        show($("liPhone"));
+      } else hide($("liPhone"));
+
+      if (hasText(data.email)){
+        $("cvEmailLink").textContent = data.email;
+        $("cvEmailLink").href = `mailto:${data.email}`;
+        show($("liEmail"));
+      } else hide($("liEmail"));
+
+      const anyContact =
+        !$("liAgeBac").classList.contains("hidden") ||
+        !$("liPhone").classList.contains("hidden") ||
+        !$("liEmail").classList.contains("hidden");
+
+      if (anyContact){
+        show($("cvContactDivider"));
+        show($("cvContactList"));
+      } else {
+        hide($("cvContactDivider"));
+        hide($("cvContactList"));
+      }
+
+      if (data.skills.length){
+        renderPills($("cvSkills"), data.skills);
+        show($("cvSkillsSection"));
+        show($("cvSkillsDivider"));
+      } else {
+        hide($("cvSkillsSection"));
+        hide($("cvSkillsDivider"));
+      }
+
+      if (data.langs.length){
+        renderPills($("cvLangs"), data.langs);
+        show($("cvLangsSection"));
+        show($("cvLangsDivider"));
+      } else {
+        hide($("cvLangsSection"));
+        hide($("cvLangsDivider"));
+      }
+
+      if (hasText(data.profile)){
+        $("cvProfileText").textContent = data.profile;
+        show($("secProfile"));
+      } else {
+        hide($("secProfile"));
+      }
+
+      const edu1Ok = hasText(data.edu1.title) || hasText(data.edu1.meta) || hasText(data.edu1.text);
+      const edu2Ok = hasText(data.edu2.title) || hasText(data.edu2.meta) || hasText(data.edu2.text);
+
+      if (edu1Ok){
+        $("cvEdu1Title").textContent = data.edu1.title || "";
+        $("cvEdu1Meta").textContent = data.edu1.meta || "";
+        $("cvEdu1Text").textContent = data.edu1.text || "";
+        show($("edu1Item"));
+      } else hide($("edu1Item"));
+
+      if (edu2Ok){
+        $("cvEdu2Title").textContent = data.edu2.title || "";
+        $("cvEdu2Meta").textContent = data.edu2.meta || "";
+        $("cvEdu2Text").textContent = data.edu2.text || "";
+        show($("edu2Item"));
+      } else hide($("edu2Item"));
+
+      if (edu1Ok || edu2Ok) show($("secEdu"));
+      else hide($("secEdu"));
+
+      const expOk = hasText(data.exp.title) || hasText(data.exp.meta) || hasText(data.exp.text) || (data.exp.bullets && data.exp.bullets.length);
+      if (expOk){
+        $("cvExpTitle").textContent = data.exp.title || "";
+        $("cvExpMeta").textContent = data.exp.meta || "";
+        $("cvExpText").textContent = data.exp.text || "";
+        const ul = $("cvExpBullets");
+        ul.innerHTML = "";
+        (data.exp.bullets || []).forEach(x => {
+          const li = document.createElement("li");
+          li.textContent = x;
+          ul.appendChild(li);
+        });
+        show($("secExp"));
+      } else {
+        hide($("secExp"));
+      }
+
+      const proj1Ok = hasText(data.proj1.title) || hasText(data.proj1.tech) || hasText(data.proj1.text);
+      const proj2Ok = hasText(data.proj2.title) || hasText(data.proj2.tech) || hasText(data.proj2.text);
+      const proj3Ok = hasText(data.proj3.title) || hasText(data.proj3.tech) || hasText(data.proj3.text);
+
+      if (proj1Ok){
+        $("cvProj1Title").textContent = data.proj1.title || "";
+        $("cvProj1Tech").textContent = data.proj1.tech || "";
+        $("cvProj1Text").textContent = data.proj1.text || "";
+        show($("proj1Item"));
+      } else hide($("proj1Item"));
+
+      if (proj2Ok){
+        $("cvProj2Title").textContent = data.proj2.title || "";
+        $("cvProj2Tech").textContent = data.proj2.tech || "";
+        $("cvProj2Text").textContent = data.proj2.text || "";
+        show($("proj2Item"));
+      } else hide($("proj2Item"));
+
+      if (proj3Ok){
+        $("cvProj3Title").textContent = data.proj3.title || "";
+        $("cvProj3Tech").textContent = data.proj3.tech || "";
+        $("cvProj3Text").textContent = data.proj3.text || "";
+        show($("proj3Item"));
+      } else hide($("proj3Item"));
+
+      if (proj1Ok || proj2Ok || proj3Ok) show($("secProjects"));
+      else hide($("secProjects"));
+
+      if (data.strengths.length){
+        renderPills($("cvStrengths"), data.strengths);
+        show($("secStrengths"));
+      } else {
+        hide($("secStrengths"));
+      }
+    }
+
+    function save(){
+      const data = buildData();
+      const lang = localStorage.getItem("cree_lang") || "fr";
+      const dict = I18N[lang] || I18N.fr;
+
+      if (!data.name){
+        alert(dict.alertNeedName);
+        return;
+      }
+      localStorage.setItem("cv_builder_data", JSON.stringify(data));
+      applyToPage(data);
+      $("cvPreviewCard").classList.remove("hidden");
+      $("builder").classList.add("hidden");
+      location.hash = "#cvPreviewCard";
+    }
+
+    function showCV(){
+      const data = buildData();
+      applyToPage(data);
+      $("cvPreviewCard").classList.remove("hidden");
+      location.hash = "#cvPreviewCard";
+    }
+
+    function modify(){
+      $("builder").classList.remove("hidden");
+      $("cvPreviewCard").classList.add("hidden");
+      location.hash = "#builder";
+    }
+
+    function loadSaved(){
+      const lang = localStorage.getItem("cree_lang") || "fr";
+      const dict = I18N[lang] || I18N.fr;
+
+      const raw = localStorage.getItem("cv_builder_data");
+      if (!raw){
+        alert(dict.alertNoSave);
+        return;
+      }
+      const data = JSON.parse(raw);
+
+      $("inName").value = data.name || "";
+      $("inHeadline").value = data.headline || "";
+      $("inAge").value = data.age || "";
+      $("inBac").value = data.bac || "";
+      $("inPhone").value = data.phone || "";
+      $("inEmail").value = data.email || "";
+
+      $("inWa").value = data.wa || "";
+      $("inWaMsg").value = data.waMsg || "";
+
+      $("inProfile").value = data.profile || "";
+      $("inSkills").value = (data.skills || []).map(x => x.t).join(", ");
+      $("inStrengths").value = (data.strengths || []).map(x => x.t).join(", ");
+
+      const langTexts = (data.langs || []).map(x => x.t);
+      $("inLang1").value = langTexts[0] || "";
+      $("inLang2").value = langTexts[1] || "";
+      $("inLang3").value = langTexts[2] || "";
+
+      $("inEdu1Title").value = (data.edu1 && data.edu1.title) || "";
+      $("inEdu1Meta").value  = (data.edu1 && data.edu1.meta)  || "";
+      $("inEdu1Text").value  = (data.edu1 && data.edu1.text)  || "";
+
+      $("inEdu2Title").value = (data.edu2 && data.edu2.title) || "";
+      $("inEdu2Meta").value  = (data.edu2 && data.edu2.meta)  || "";
+      $("inEdu2Text").value  = (data.edu2 && data.edu2.text)  || "";
+
+      $("inExpTitle").value = (data.exp && data.exp.title) || "";
+      $("inExpMeta").value  = (data.exp && data.exp.meta)  || "";
+      $("inExpText").value  = (data.exp && data.exp.text)  || "";
+      $("inExpBullets").value = (data.exp && data.exp.bullets) ? data.exp.bullets.join("\\n") : "";
+
+      $("inProj1Title").value = (data.proj1 && data.proj1.title) || "";
+      $("inProj1Tech").value  = (data.proj1 && data.proj1.tech)  || "";
+      $("inProj1Text").value  = (data.proj1 && data.proj1.text)  || "";
+
+      $("inProj2Title").value = (data.proj2 && data.proj2.title) || "";
+      $("inProj2Tech").value  = (data.proj2 && data.proj2.tech)  || "";
+      $("inProj2Text").value  = (data.proj2 && data.proj2.text)  || "";
+
+      $("inProj3Title").value = (data.proj3 && data.proj3.title) || "";
+      $("inProj3Tech").value  = (data.proj3 && data.proj3.tech)  || "";
+      $("inProj3Text").value  = (data.proj3 && data.proj3.text)  || "";
+
+      state.photoDataUrl = data.photoDataUrl || "";
+      if (state.photoDataUrl){
+        $("photoPreview").src = state.photoDataUrl;
+        $("headerPhoto").src = state.photoDataUrl;
+      } else {
+        $("photoPreview").src = "";
+      }
+
+      applyToPage(data);
+      alert(dict.alertLoaded);
+    }
+
+    function resetAll(){
+      const lang = localStorage.getItem("cree_lang") || "fr";
+      const dict = I18N[lang] || I18N.fr;
+
+      if (!confirm(dict.confirmReset)) return;
+      localStorage.removeItem("cv_builder_data");
+      state.photoDataUrl = "";
+
+      document.querySelectorAll("input, textarea").forEach(el => {
+        if (el.type === "file") el.value = "";
+        else el.value = "";
+      });
+
+      $("photoPreview").src = "";
+      $("cvPhoto").src = "";
+
+      $("cvPreviewCard").classList.add("hidden");
+      $("builder").classList.remove("hidden");
+      $("headerName").textContent = "Votre Nom";
+      location.hash = "#builder";
+    }
+
+    $("inPhoto").addEventListener("change", (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        state.photoDataUrl = reader.result;
+        $("photoPreview").src = state.photoDataUrl;
+        $("headerPhoto").src = state.photoDataUrl;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    $("btnSave").addEventListener("click", save);
+    $("btnShow").addEventListener("click", showCV);
+    $("btnModify").addEventListener("click", modify);
+    $("btnPrint").addEventListener("click", () => window.print());
+    $("btnLoad").addEventListener("click", loadSaved);
+    $("btnReset").addEventListener("click", resetAll);
+
+    // ✅ Contact Form -> WhatsApp
+    function isEmailValid(email){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    function waUrl(phone, msg){
+      const p = (phone || "212000000000").toString().trim();
+      return "https://api.whatsapp.com/send?phone=" + encodeURIComponent(p) + "&text=" + encodeURIComponent(msg);
+    }
+
+    $("contactForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const lang = localStorage.getItem("cree_lang") || "fr";
+      const dict = I18N[lang] || I18N.fr;
+
+      const name = safeText($("cfName").value);
+      const email = safeText($("cfEmail").value);
+      const msg = safeText($("cfMsg").value);
+
+      $("errName").textContent = "";
+      $("errEmail").textContent = "";
+      $("errMsg").textContent = "";
+      $("cfStatus").textContent = "";
+
+      let ok = true;
+      if (name.length < 2){ $("errName").textContent = dict.errName; ok = false; }
+      if (!isEmailValid(email)){ $("errEmail").textContent = dict.errEmail; ok = false; }
+      if (msg.length < 10){ $("errMsg").textContent = dict.errMsg; ok = false; }
+      if (!ok) return;
+
+      const waNumber = safeText($("inWa").value) || "212000000000";
+      const full =
+        "Salam 👋\n" +
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Message: " + msg;
+
+      $("cfStatus").textContent = dict.cfSent;
+      window.location.href = waUrl(waNumber, full);
+    });
+
+    // Init (optional auto-apply saved)
+    (function init(){
+      const raw = localStorage.getItem("cv_builder_data");
+      if (!raw) return;
+      try{
+        const data = JSON.parse(raw);
+        state.photoDataUrl = data.photoDataUrl || "";
+        applyToPage(data);
+        $("headerName").textContent = data.name || "Votre Nom";
+      }catch(e){}
+    })();
+  </script>
+</body>
+</html>

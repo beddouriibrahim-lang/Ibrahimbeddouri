@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logoinsta.png">
+    <title>Instagram Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: white;
+            width: 360px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Logo Instagram style */
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+
+        .info-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .facebook-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #3897f0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .facebook-btn:hover {
+            background-color: #2b77c0;
+        }
+
+        .or-divider {
+            margin: 15px 0;
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Input field style */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Show password button */
+        .show-password-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #007bff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #3897f0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2b77c0;
+        }
+
+        p {
+            font-size: 13px;
+            color: #888;
+        }
+
+        a {
+            color: #3897f0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--muted);
+            width: 100%;
+        }
+
+        .footer a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .signup {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .signup a {
+            color: var(--btn);
+            text-decoration: none;
+        }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+
+        /* Pour afficher/masquer mot de passe */
+        #togglePassword {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <!-- Instagram Logo -->
+        <img class="logo" src="textinsta.png" alt="Instagram Logo">
+
+        <!-- Info text -->
+        <div class="info-text">
+            Inscrivez-vous pour voir les photos et vidéos de vos ami(e)s.
+        </div>
+
+        <button class="facebook-btn" onclick="window.location.href='facebook.html'" >Se connecter avec Facebook</button>
+        <div class="or-divider">OU</div>
+        <form action="#" method="POST">
+            <input type="email" placeholder="Numéro mobile ou e-mail" required>
+            <!-- Mot de passe avec afficher/mask toggle -->
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <input type="text" placeholder="Nom complet" required>
+            <input type="text" placeholder="Nom de profil" required>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p>Les personnes qui utilisent notre service ont pu importer vos coordonnées sur Instagram.</p>
+        <p>En vous inscrivant, vous acceptez nos <a href="#">Conditions générales</a>, <a href="#">Politique de confidentialité</a> et <a href="#">Politique d'utilisation des cookies</a>.</p>
+        <p>Vous avez un compte ? <a href="index.html">Connectez-vous</a></p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>
+            <a href="#">Meta</a> | <a href="#">À propos</a> | <a href="#">Blog</a> | <a href="#">Emplois</a> | <a href="#">Aide</a> | 
+            <a href="#">API</a> | <a href="#">Confidentialité</a> | <a href="#">Conditions</a> | <a href="#">Lieux</a> | 
+            <a href="#">Instagram Lite</a> | <a href="#">Meta AI</a> | <a href="#">Threads</a> | 
+            <a href="#">Importation des contacts et non-utilisateurs</a>
+        </p>
+        <p>Français © 2026 Instagram par Meta</p>
+    </div>
+
+
+</body>
+</html>

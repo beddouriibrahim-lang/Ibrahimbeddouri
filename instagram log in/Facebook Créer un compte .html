@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="logo facebook .png">
+  <title>Créer un compte</title>
+
+  <style>
+    :root{
+      --page-bg:#f0f2f5;
+      --card:#ffffff;
+      --text:#1c1e21;
+      --muted:#606770;
+      --border:#ccd0d5;
+      --input-bg:#f5f6f7;
+
+      /* Branding ديالك */
+      --brand:#4f46e5;
+
+      --link:#1877f2;
+      --cta:#0a8f08;
+      --cta-hover:#087006;
+
+      --shadow:0 2px 12px rgba(0,0,0,.16);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Helvetica, Arial, sans-serif;
+      background:var(--page-bg);
+      color:var(--text);
+    }
+
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .brand{
+      margin:22px 0 10px;
+      font-size:56px;
+      font-weight:800;
+      letter-spacing:-1px;
+      color:var(--brand);
+      user-select:none;
+    }
+
+    .card{
+      width:min(432px, calc(100% - 24px));
+      background:var(--card);
+      border-radius:10px;
+      box-shadow:var(--shadow);
+      padding:14px 16px 14px;
+    }
+
+    .title{
+      text-align:center;
+      font-size:26px;
+      font-weight:700;
+      margin:8px 0 2px;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin:0 0 12px;
+      font-size:15px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    @media (max-width:520px){
+      .brand{font-size:42px}
+      .row{grid-template-columns:1fr}
+    }
+
+    input, select{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:6px;
+      padding:11px 10px;
+      font-size:15px;
+      background:var(--input-bg);
+      outline:none;
+    }
+    input:focus, select:focus{
+      background:#fff;
+      border-color:#7c3aed;
+      box-shadow:0 0 0 3px rgba(124,58,237,.15);
+    }
+
+    label{
+      display:block;
+      margin:8px 0 6px;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .dob{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .gender{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .gopt{
+      border:1px solid var(--border);
+      border-radius:6px;
+      padding:10px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      cursor:pointer;
+      font-size:15px;
+    }
+    .gopt input{margin:0}
+
+    .full{ margin-bottom:10px; }
+
+    .imported{
+      margin: 6px 0 10px;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .imported a{
+      color: var(--link);
+      text-decoration:none;
+    }
+    .imported a:hover{ text-decoration:underline; }
+
+    /* ✅ fineprint مع links */
+    .fineprint{
+      font-size:12.5px;
+      color:var(--muted);
+      line-height:1.35;
+      margin-top:6px;
+    }
+    .fineprint a{
+      color:var(--link);
+      text-decoration:none;
+    }
+    .fineprint a:hover{text-decoration:underline}
+
+    .btnWrap{
+      display:flex;
+      justify-content:center;
+      margin:14px 0 10px;
+    }
+    button{
+      border:none;
+      border-radius:8px;
+      padding:10px 62px;
+      min-width:210px;
+      height:44px;
+      font-size:20px;
+      font-weight:700;
+      color:#fff;
+      background:var(--cta);
+      cursor:pointer;
+      box-shadow:0 1px 0 rgba(0,0,0,.2) inset;
+    }
+    button:hover{background:var(--cta-hover)}
+    button:active{transform:translateY(1px)}
+
+    .already{
+      text-align:center;
+      margin:6px 0 2px;
+      font-size:20px;
+    }
+    .already a{
+      color:var(--link);
+      text-decoration:none;
+      font-weight:500;
+    }
+    .already a:hover{text-decoration:underline}
+
+    .error{
+      display:none;
+      margin-top:10px;
+      padding:10px;
+      border-radius:6px;
+      border:1px solid #fecaca;
+      background:#fff1f2;
+      color:#9f1239;
+      font-size:13px;
+    }
+
+    /* footer */
+    footer{
+      width:100%;
+      margin-top:22px;
+      background:#fff;
+      border-top:1px solid #dddfe2;
+      padding:18px 0 26px;
+      color:#737373;
+      font-size:12px;
+    }
+    .footerBox{
+      width:min(980px, calc(100% - 24px));
+      margin:0 auto;
+    }
+    .footerRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      align-items:center;
+    }
+    .footerRow a{
+      color:#737373;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .footerRow a:hover{text-decoration:underline}
+
+    .plusBtn{
+      width:28px;height:22px;
+      border:1px solid #ccd0d5;
+      background:#f5f6f7;
+      border-radius:2px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#4b4f56;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .divider{
+      height:1px;
+      background:#dddfe2;
+      margin:10px 0 12px;
+    }
+
+    .copyright{
+      margin-top:14px;
+      color:#737373;
+    }
+
+    /* =========================
+       Language Modal
+    ========================= */
+    .modalOverlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.35);
+      display:none;
+      align-items:flex-start;
+      justify-content:center;
+      padding:40px 16px;
+      z-index:9999;
+    }
+    .modalOverlay.open{ display:flex; }
+
+    .langModal{
+      width:min(980px, 100%);
+      background:#fff;
+      border-radius:6px;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      overflow:hidden;
+      border:1px solid #cbd5e1;
+    }
+    .langHeader{
+      background:#6b7ea8;
+      color:#fff;
+      padding:10px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-weight:700;
+    }
+    .closeBtn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      color:#fff;
+      font-size:18px;
+      cursor:pointer;
+      padding:6px 10px;
+      border-radius:4px;
+    }
+    .closeBtn:hover{ background:rgba(255,255,255,.12); }
+
+    .langBody{ padding:14px; }
+
+    .suggestedRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px 28px;
+      align-items:center;
+      padding:6px 0 14px;
+      border-bottom:1px dashed #d1d5db;
+      margin-bottom:14px;
+      color:#111827;
+    }
+    .suggestedLabel{
+      color:#6b7280;
+      font-size:13px;
+      min-width:160px;
+    }
+    .langPick{
+      color:var(--link);
+      cursor:pointer;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:600;
+      position:relative;
+      padding-bottom:2px;
+    }
+    .langPick:hover{ text-decoration:underline; }
+    .langPick.selected::after{
+      content:"✓";
+      color:#111827;
+      font-weight:800;
+      margin-left:8px;
+    }
+
+    .langGrid{
+      display:grid;
+      grid-template-columns:200px 1fr;
+      gap:18px;
+      min-height:420px;
+    }
+    @media (max-width:760px){
+      .langGrid{ grid-template-columns:1fr; }
+    }
+
+    .categories{
+      color:#6b7280;
+      font-size:14px;
+      line-height:2.1;
+    }
+    .categories a{
+      color:#6b7280;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .categories a:hover{
+      color:#111827;
+      text-decoration:underline;
+    }
+
+    .langsList{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:10px 24px;
+      align-content:start;
+      max-height:420px;
+      overflow:auto;
+      padding-right:6px;
+    }
+    @media (max-width:980px){
+      .langsList{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width:760px){
+      .langsList{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    }
+    .langItem{
+      color:var(--link);
+      cursor:pointer;
+      text-decoration:none;
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .langItem:hover{ text-decoration:underline; }
+
+    /* RTL tweaks */
+    html[dir="rtl"] body{ font-family: Tahoma, Arial, sans-serif; }
+    html[dir="rtl"] .card,
+    html[dir="rtl"] .langBody{ direction:rtl; }
+    html[dir="rtl"] label{ text-align:right; }
+    html[dir="rtl"] .gopt{ flex-direction:row-reverse; }
+    html[dir="rtl"] .suggestedLabel{ text-align:right; }
+    html[dir="rtl"] .langGrid{ direction:rtl; }
+    html[dir="rtl"] .langsList{ padding-right:0; padding-left:6px; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="brand">Facebook</div>
+
+    <div class="card">
+      <div class="title" data-i18n="title">Créer un compte</div>
+      <div class="subtitle" data-i18n="subtitle">C’est simple et rapide.</div>
+
+      <form id="form" novalidate>
+        <div class="row">
+          <input id="prenom" data-i18n-ph="ph_first" placeholder="Prénom" autocomplete="given-name" required />
+          <input id="nom" data-i18n-ph="ph_last" placeholder="Nom de famille" autocomplete="family-name" required />
+        </div>
+
+        <label data-i18n="dob">Date de naissance</label>
+        <div class="dob">
+          <select id="day" required></select>
+          <select id="month" required></select>
+          <select id="year" required></select>
+        </div>
+
+        <label data-i18n="gender">Genre</label>
+        <div class="gender" role="radiogroup">
+          <label class="gopt"><span data-i18n="female">Femme</span> <input type="radio" name="gender" value="Femme" required></label>
+          <label class="gopt"><span data-i18n="male">Homme</span> <input type="radio" name="gender" value="Homme" required></label>
+          <label class="gopt"><span data-i18n="custom">Personnalisé</span> <input type="radio" name="gender" value="Custom" required></label>
+        </div>
+
+        <div class="full">
+          <input id="contact" data-i18n-ph="ph_contact" placeholder="Numéro mobile ou e-mail" autocomplete="email" required />
+        </div>
+
+        <div class="full">
+          <input id="pass" type="password" data-i18n-ph="ph_pass" placeholder="Nouveau mot de passe" minlength="8" autocomplete="new-password" required />
+        </div>
+
+        <div class="imported">
+          <span data-i18n="imported">
+            Les personnes qui utilisent notre service ont pu importer vos coordonnées sur notre plateforme.
+          </span>
+          <a href="#" data-i18n="learn_more">En savoir plus</a>.
+        </div>
+
+        <!-- ✅ هنا fineprint فيه روابط -->
+        <div class="fineprint" data-i18n-html="fineprint"></div>
+
+        <div id="err" class="error"></div>
+
+        <div class="btnWrap">
+          <button type="submit" data-i18n="btn">S’inscrire</button>
+        </div>
+
+        <div class="already">
+          <a href="facebook.html" data-i18n="already">Vous avez déjà un compte ?</a>
+        </div>
+      </form>
+    </div>
+
+    <footer>
+      <div class="footerBox">
+        <div class="footerRow">
+          <a href="#" id="currentLangLabel">Français (France)</a>
+          <a href="#" class="langQuick" data-lang="ar">العربية</a>
+          <a href="#" class="langQuick" data-lang="en">English (UK)</a>
+          <span class="plusBtn" id="openLangModal" title="Plus">+</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="footerRow">
+          <a href="#" data-i18n="footer_signup">S’inscrire</a>
+          <a href="#" data-i18n="footer_login">Se connecter</a>
+          <a href="#" data-i18n="footer_help">Aide</a>
+          <a href="#" data-i18n="footr_privacy">Confidentialité</a>
+          <a href="#" data-i18n="footer_terms">Conditions</a>
+          <a href="#" data-i18n="footer_cookies">Cookies</a>
+          <a href="#" data-i18n="footer_about">À propos</a>
+          <a href="#" data-i18n="footer_create">Créer une Page</a>
+        </div>
+
+        <div class="copyright">© 2026 MySocial</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Language Modal -->
+  <div class="modalOverlay" id="langOverlay" aria-hidden="true">
+    <div class="langModal" role="dialog" aria-modal="true" aria-labelledby="langTitle">
+      <div class="langHeader">
+        <div id="langTitle" data-i18n="lang_title">Sélectionnez votre langue</div>
+        <button class="closeBtn" id="closeLangModal" aria-label="Close">✕</button>
+      </div>
+
+      <div class="langBody">
+        <div class="suggestedRow">
+          <div class="suggestedLabel" data-i18n="suggested">Langues suggérées</div>
+
+          <a class="langPick" href="#" data-lang="fr">Français (France)</a>
+          <a class="langPick" href="#" data-lang="ar">العربية</a>
+          <a class="langPick" href="#" data-lang="en">English (UK)</a>
+        </div>
+
+        <div class="langGrid">
+          <div class="categories">
+            <div><a href="#" data-scroll="all" data-i18n="all_langs">Toutes les langues</a></div>
+            <div><a href="#" data-scroll="afme" data-i18n="cat_afme">Afrique et Moyen-Orient</a></div>
+            <div><a href="#" data-scroll="amer" data-i18n="cat_amer">Amériques</a></div>
+            <div><a href="#" data-scroll="apac" data-i18n="cat_apac">Asie-Pacifique</a></div>
+            <div><a href="#" data-scroll="easteu" data-i18n="cat_easteu">Europe de l’Est</a></div>
+            <div><a href="#" data-scroll="westeu" data-i18n="cat_westeu">Europe de l’Ouest</a></div>
+          </div>
+
+          <div class="langsList" id="langsList">
+            <a class="langItem" href="#" data-lang="fr">Français (France)</a>
+            <a class="langItem" href="#" data-lang="ar">العربية</a>
+            <a class="langItem" href="#" data-lang="en">English (UK)</a>
+
+            <a class="langItem" href="#" data-lang="es">Español</a>
+            <a class="langItem" href="#" data-lang="it">Italiano</a>
+            <a class="langItem" href="#" data-lang="de">Deutsch</a>
+            <a class="langItem" href="#" data-lang="pt">Português</a>
+            <a class="langItem" href="#" data-lang="hi">हिन्दी</a>
+            <a class="langItem" href="#" data-lang="zh">中文(简体)</a>
+            <a class="langItem" href="#" data-lang="ja">日本語</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ========= prevent # links from jumping ========= */
+    document.addEventListener("click",(e)=>{
+      const a = e.target.closest("a[href='#']");
+      if(a) e.preventDefault();
+    });
+
+    /* ========= DOB selects ========= */
+    const daySel = document.getElementById('day');
+    const monthSel = document.getElementById('month');
+    const yearSel = document.getElementById('year');
+    const errBox = document.getElementById('err');
+
+    const monthsFR = ["jan","févr","mars","avr","mai","juin","juil","août","sept","oct","nov","déc"];
+    const monthsEN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const monthsAR = ["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر"];
+
+    function fill(select, placeholder, items){
+      select.innerHTML = "";
+      const ph = document.createElement("option");
+      ph.value = "";
+      ph.textContent = placeholder;
+      ph.disabled = true;
+      ph.selected = true;
+      select.appendChild(ph);
+      items.forEach(it=>{
+        const o = document.createElement("option");
+        o.value = it.value;
+        o.textContent = it.label;
+        select.appendChild(o);
+      });
+    }
+
+    function isLeap(y){
+      y = Number(y);
+      return (y%4===0 && y%100!==0) || (y%400===0);
+    }
+    function dim(m,y){
+      if(m===2) return isLeap(y)?29:28;
+      if([4,6,9,11].includes(m)) return 30;
+      return 31;
+    }
+    function days(n){ return Array.from({length:n},(_,i)=>({value:String(i+1),label:String(i+1)})); }
+
+    const nowY = new Date().getFullYear();
+    const years = [];
+    for(let y=nowY; y>=1900; y--) years.push({value:String(y),label:String(y)});
+
+    function setMonthsForLang(lang){
+      let m = monthsFR;
+      if(lang === "en") m = monthsEN;
+      if(lang === "ar") m = monthsAR;
+      fill(monthSel, m[0], m.map((name,i)=>({value:String(i+1),label:name})));
+    }
+
+    setMonthsForLang("fr");
+    fill(yearSel, String(nowY), years);
+    fill(daySel, "1", days(31));
+
+    function refreshDays(){
+      const m = Number(monthSel.value || 1);
+      const y = Number(yearSel.value || nowY);
+      const prev = daySel.value;
+      fill(daySel, "1", days(dim(m,y)));
+      if(prev && Number(prev) <= dim(m,y)) daySel.value = prev;
+    }
+    monthSel.addEventListener("change", refreshDays);
+    yearSel.addEventListener("change", refreshDays);
+
+    /* ========= i18n ========= */
+    const i18n = {
+      fr: {
+        title: "Créer un compte",
+        subtitle: "C’est simple et rapide.",
+        dob: "Date de naissance",
+        gender: "Genre",
+        female: "Femme",
+        male: "Homme",
+        custom: "Personnalisé",
+        btn: "S’inscrire",
+        already: "Vous avez déjà un compte ?",
+        imported: "Les personnes qui utilisent notre service ont pu importer vos coordonnées sur notre plateforme.",
+        learn_more: "En savoir plus",
+
+        /* ✅ fineprint HTML فيه links */
+        fineprint:
+          'En cliquant sur <b>S’inscrire</b>, vous acceptez nos ' +
+          '<a href="https://www.facebook.com/legal/terms/update" id="lnkTerms">Conditions générales</a>, notre ' +
+          '<a href="https://www.facebook.com/privacy/policy/?entry_point=data_policy_redirect&entry=0" id="lnkPrivacy">Politique de confidentialité</a> et notre ' +
+          '<a href="https://www.facebook.com/privacy/policies/cookies/?entry_point=cookie_policy_redirect&entry=0" id="lnkCookies">Politique d’utilisation des cookies</a>. ' +
+          'Vous recevrez peut-être des notifications par SMS de notre part et vous pouvez à tout moment vous désabonner.',
+
+        footer_signup: "S’inscrire",
+        footer_login: "Se connecter",
+        footer_help: "Aide",
+        footer_privacy: "Confidentialité",
+        footer_terms: "Conditions",
+        footer_cookies: "Cookies",
+        footer_about: "À propos",
+        footer_create: "Créer une Page",
+        lang_title: "Sélectionnez votre langue",
+        suggested: "Langues suggérées",
+        all_langs: "Toutes les langues",
+        cat_afme: "Afrique et Moyen-Orient",
+        cat_amer: "Amériques",
+        cat_apac: "Asie-Pacifique",
+        cat_easteu: "Europe de l’Est",
+        cat_westeu: "Europe de l’Ouest",
+        ph_first: "Prénom",
+        ph_last: "Nom de famille",
+        ph_contact: "Numéro mobile ou e-mail",
+        ph_pass: "Nouveau mot de passe",
+        currentLangLabel: "Français (France)",
+      },
+      en: {
+        title: "Create an account",
+        subtitle: "It’s quick and easy.",
+        dob: "Date of birth",
+        gender: "Gender",
+        female: "Female",
+        male: "Male",
+        custom: "Custom",
+        btn: "Sign Up",
+        already: "Already have an account?",
+        imported: "People who use our service may have imported your contact information to our platform.",
+        learn_more: "Learn more",
+        fineprint:
+          'By clicking <b>Sign Up</b>, you agree to our ' +
+          '<a href="#" id="lnkTerms">Terms</a>, ' +
+          '<a href="#" id="lnkPrivacy">Privacy Policy</a> and ' +
+          '<a href="#" id="lnkCookies">Cookies Policy</a>. ' +
+          'You may receive SMS notifications from us and can opt out at any time.',
+        footer_signup: "Sign Up",
+        footer_login: "Log In",
+        footer_help: "Help",
+        footer_privacy: "Privacy",
+        footer_terms: "Terms",
+        footer_cookies: "Cookies",
+        footer_about: "About",
+        footer_create: "Create a Page",
+        lang_title: "Select your language",
+        suggested: "Suggested languages",
+        all_langs: "All languages",
+        cat_afme: "Africa and Middle East",
+        cat_amer: "Americas",
+        cat_apac: "Asia-Pacific",
+        cat_easteu: "Eastern Europe",
+        cat_westeu: "Western Europe",
+        ph_first: "First name",
+        ph_last: "Last name",
+        ph_contact: "Mobile number or email",
+        ph_pass: "New password",
+        currentLangLabel: "English (UK)",
+      },
+      ar: {
+        title: "إنشاء حساب",
+        subtitle: "الأمر سهل وسريع.",
+        dob: "تاريخ الميلاد",
+        gender: "النوع",
+        female: "أنثى",
+        male: "ذكر",
+        custom: "مخصص",
+        btn: "إنشاء حساب",
+        already: "هل لديك حساب بالفعل؟",
+        imported: "قد يكون الأشخاص الذين يستخدمون خدمتنا قد استوردوا معلومات الاتصال الخاصة بك إلى منصتنا.",
+        learn_more: "معرفة المزيد",
+        fineprint:
+          'بالنقر على <b>إنشاء حساب</b>، فإنك توافق على ' +
+          '<a href="#" id="lnkTerms">الشروط</a> و' +
+          '<a href="#" id="lnkPrivacy">سياسة الخصوصية</a> و' +
+          '<a href="#" id="lnkCookies">سياسة ملفات تعريف الارتباط</a>. ' +
+          'قد تتلقى إشعارات عبر الرسائل النصية ويمكنك إلغاء الاشتراك في أي وقت.',
+        footer_signup: "إنشاء حساب",
+        footer_login: "تسجيل الدخول",
+        footer_help: "مساعدة",
+        footer_privacy: "الخصوصية",
+        footer_terms: "الشروط",
+        footer_cookies: "ملفات تعريف الارتباط",
+        footer_about: "حول",
+        footer_create: "إنشاء صفحة",
+        lang_title: "اختر لغتك",
+        suggested: "اللغات المقترحة",
+        all_langs: "كل اللغات",
+        cat_afme: "أفريقيا والشرق الأوسط",
+        cat_amer: "الأمريكتان",
+        cat_apac: "آسيا والمحيط الهادئ",
+        cat_easteu: "أوروبا الشرقية",
+        cat_westeu: "أوروبا الغربية",
+        ph_first: "الاسم الشخصي",
+        ph_last: "اسم العائلة",
+        ph_contact: "رقم الهاتف أو البريد الإلكتروني",
+        ph_pass: "كلمة مرور جديدة",
+        currentLangLabel: "العربية",
+      }
+    };
+
+    let currentLang = "fr";
+
+    function applyLang(lang){
+      if(!i18n[lang]) lang = "fr";
+      currentLang = lang;
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
+
+      setMonthsForLang(lang);
+
+      // text nodes
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        const val = i18n[lang][key];
+        if(typeof val === "string") el.textContent = val;
+      });
+
+      // placeholders
+      document.querySelectorAll("[data-i18n-ph]").forEach(el=>{
+        const key = el.getAttribute("data-i18n-ph");
+        const val = i18n[lang][key];
+        if(typeof val === "string") el.placeholder = val;
+      });
+
+      // ✅ HTML blocks (fineprint with links)
+      document.querySelectorAll("[data-i18n-html]").forEach(el=>{
+        const key = el.getAttribute("data-i18n-html");
+        const val = i18n[lang][key];
+        if(typeof val === "string") el.innerHTML = val;
+      });
+
+      document.getElementById("currentLangLabel").textContent = i18n[lang].currentLangLabel;
+
+      // selected mark in modal
+      document.querySelectorAll(".langPick").forEach(a=>{
+        a.classList.toggle("selected", a.dataset.lang === lang);
+      });
+    }
+
+    /* ========= Form validation demo ========= */
+    function showErr(msg){
+      errBox.textContent = msg;
+      errBox.style.display = "block";
+    }
+    function clearErr(){
+      errBox.textContent = "";
+      errBox.style.display = "none";
+    }
+    function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+    function isPhone(v){
+      const c = v.replace(/[()\s-]/g,"");
+      return /^\+?\d{7,15}$/.test(c);
+    }
+
+    function langMsg(key){
+      const msgs = {
+        fr:{
+          name_required:"Saisissez votre prénom et nom.",
+          dob_required:"Choisissez votre date de naissance.",
+          gender_required:"Choisissez un genre.",
+          contact_invalid:"Contact invalide (e-mail ou téléphone).",
+          pass_invalid:"Mot de passe: 8 caractères minimum."
+        },
+        en:{
+          name_required:"Please enter your first and last name.",
+          dob_required:"Please choose your date of birth.",
+          gender_required:"Please select a gender.",
+          contact_invalid:"Invalid contact (email or phone).",
+          pass_invalid:"Password must be at least 8 characters."
+        },
+        ar:{
+          name_required:"المرجو إدخال الاسم واللقب.",
+          dob_required:"المرجو اختيار تاريخ الميلاد.",
+          gender_required:"المرجو اختيار النوع.",
+          contact_invalid:"بيانات الاتصال غير صحيحة (هاتف أو بريد).",
+          pass_invalid:"كلمة المرور يجب ألا تقل عن 8 أحرف."
+        }
+      };
+      return (msgs[currentLang] && msgs[currentLang][key]) || msgs.fr[key] || "Erreur";
+    }
+
+    document.getElementById("form").addEventListener("submit",(e)=>{
+      e.preventDefault();
+      clearErr();
+
+      const prenom = document.getElementById("prenom").value.trim();
+      const nom = document.getElementById("nom").value.trim();
+      const contact = document.getElementById("contact").value.trim();
+      const pass = document.getElementById("pass").value;
+      const g = document.querySelector('input[name="gender"]:checked')?.value;
+
+      if(!prenom || !nom) return showErr(langMsg("name_required"));
+      if(!daySel.value || !monthSel.value || !yearSel.value) return showErr(langMsg("dob_required"));
+      if(!g) return showErr(langMsg("gender_required"));
+      if(!(isEmail(contact) || isPhone(contact))) return showErr(langMsg("contact_invalid"));
+      if(!pass || pass.length < 8) return showErr(langMsg("pass_invalid"));
+
+      alert("OK ✅ (démo)");
+      e.target.reset();
+    });
+
+    /* ========= Language modal open/close ========= */
+    const overlay = document.getElementById("langOverlay");
+    const openBtn = document.getElementById("openLangModal");
+    const closeBtn = document.getElementById("closeLangModal");
+
+    function openModal(){
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden","false");
+      closeBtn.focus();
+    }
+    function closeModal(){
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden","true");
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener("click",(e)=>{ e.preventDefault(); openModal(); });
+    closeBtn.addEventListener("click",(e)=>{ e.preventDefault(); closeModal(); });
+
+    overlay.addEventListener("click",(e)=>{
+      if(e.target === overlay) closeModal();
+    });
+
+    document.addEventListener("keydown",(e)=>{
+      if(e.key === "Escape" && overlay.classList.contains("open")) closeModal();
+    });
+
+    // click language
+    document.querySelectorAll("[data-lang]").forEach(el=>{
+      el.addEventListener("click",(e)=>{
+        if(el.matches("a, .langPick, .langItem, .langQuick")) e.preventDefault();
+        const lang = el.dataset.lang;
+
+        if(["fr","en","ar"].includes(lang)){
+          applyLang(lang);
+        } else {
+          // إذا بغيتي: غير label يتبدل (بدون ترجمة كاملة)
+          document.getElementById("currentLangLabel").textContent = el.textContent.trim();
+        }
+
+        if(overlay.classList.contains("open")) closeModal();
+      });
+    });
+
+    // footer quick links
+    document.querySelectorAll(".langQuick").forEach(a=>{
+      a.addEventListener("click",(e)=>{
+        e.preventDefault();
+        applyLang(a.dataset.lang);
+      });
+    });
+
+    // init
+    applyLang("fr");
+  </script>
+</body>
+</html>

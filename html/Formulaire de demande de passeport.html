@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <Form>
+    <fieldset>
+        <legend>
+            <h1>Formulaire de demande de passeport</h1>
+        </legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="N° CIN">N° CIN</label>
+                </td>
+                <td>
+                    <input type="text" id="N° CIN" name="N° CIN" placeholder="N° CIN" pattern="^\d{8}$" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Nom">Nom</label>
+                </td>
+                <td>
+                    <input type="text" id="Nom" name="Nom" placeholder="Nom" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Prénom">Prénom</label>
+                </td>
+                <td>
+                    <input type="text" id="Prénom" name="Prénom" placeholder="Prénom" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Date de naissance">Date de naissance</label>
+                </td>
+                <td>
+                    <input type="text" id="Date de naissance" name="jour(jj)" size="3" placeholder="jour(jj)" required>
+                    <input type="text" id="Date de naissance" name="mois(mm)" size="5" placeholder="mois(mm)" required>
+                    <input type="text" id="Date de naissance" name="année(aaaa)" size="7" placeholder="année(aaaa)" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Genre">Genre</label>
+                </td>
+                <td>
+                    <input type="radio" id="Genre" name="Genre" value="Masculin" required>
+                    <label for="Masculin">Masculin</label>
+                    <input type="radio" id="Genre" name="Genre" value="Féminin" required>
+                    <label for="Féminin">Féminin</label>
+                </td>
+           </tr>
+           <tr>
+             <td>
+                 <label for="Lieu de naissance">Lieu de naissance</label>
+             </td>
+              <td>
+                 <input type="text" id="Lieu de naissance" name="Lieu de naissance" placeholder="saisir votre lieu de naissance"  required>
+              </td>
+          </tr>
+          <tr>
+            <td>
+                <label for="Pays de naissance">Pays de naissance</label>
+            </td>
+            <td>
+                <select name="Maroc" id="Pays de naissance">Maroc
+                    <option value="Maroc">Maroc</option>
+                    <option value="france">france</option>
+                    <option value="espagne">espagne</option>
+                    <option value="italie">italie</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <label for="Numéro de telephone">Numéro de telephone</label>
+            </td>
+            <td>
+                <input type="tel" value="+212" size="2" disabled > <input pattern="\d{9,10}" type="tel" id="Numéro de telephone" name="tel" placeholder="votre telephone" required>
+            </td>
+          </tr>
+          <tr>
+             <td><label for="Photo de carte d'identité">Photo de carte d'identité</label></td>
+             <td><input type="file" id="Photo de carte d'identité" name="Photo de carte d'identité" accept=image/jpeg,image/png required></td>
+          </tr>
+        
+        </table>
+        </Form>
+        <input type="submit" value="Envoyer">
+        <input type="reset" value="Annuler">
+    </fieldset>
+</body>
+</html>
