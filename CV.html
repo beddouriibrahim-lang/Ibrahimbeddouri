@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="WhatsApp Image 2026-01-02 at 10.33.22.jpeg">
+  <title>CV — Ibrahim Beddouri</title>
+
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --muted:#a9abbd;
+      --text:#f3f4ff;
+      --line: rgba(255,255,255,.10);
+      --accent:#d6b25e;
+      --accent2:#ffde8a;
+
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 24px;
+
+      --pageMax: 1040px;
+      --sideW: 310px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+
+      --headerH: 78px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 10% -10%, rgba(214,178,94,.18), transparent 60%),
+        radial-gradient(800px 520px at 95% 10%, rgba(255,222,138,.10), transparent 60%),
+        radial-gradient(900px 650px at 50% 110%, rgba(214,178,94,.10), transparent 60%),
+        linear-gradient(180deg, #06060a, var(--bg));
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--headerH);
+      display:flex;
+      align-items:center;
+      backdrop-filter: blur(14px);
+      background: rgba(5,5,6,.62);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .header__inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      width:100%;
+    }
+
+    .logo{
+      display:flex; align-items:center; gap:12px;
+      font-weight: 950;
+      letter-spacing: .3px;
+    }
+
+    .logo__mark{
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(214,178,94,.45);
+      box-shadow: 0 12px 40px rgba(214,178,94,.22);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    .logo__mark img{
+      width:100%; height:100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      filter: contrast(1.05) saturate(1.05);
+    }
+
+    .logo__text small{
+      display:block;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .35px;
+      font-size: 12px;
+      margin-top: -2px;
+    }
+
+    .nav{ display:flex; align-items:center; gap: 14px; flex-wrap:wrap; }
+    .nav__link{
+      color: var(--muted);
+      padding: 9px 10px;
+      border-radius: 12px;
+      transition: background .15s ease, color .15s ease, transform .15s ease;
+      border: 1px solid transparent;
+      white-space:nowrap;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .nav__link:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.12);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      cursor:pointer;
+      font-weight: 950;
+      letter-spacing: .2px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.12);
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.20);
+      box-shadow: 0 24px 70px rgba(0,0,0,.65);
+    }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+
+    .btn--ghost{ background: rgba(255,255,255,.04); box-shadow:none; }
+    .btn--gold{
+      border-color: rgba(214,178,94,.55);
+      background: linear-gradient(135deg, rgba(214,178,94,.18), rgba(255,222,138,.07));
+    }
+    .btn--gold:hover{
+      border-color: rgba(255,222,138,.70);
+      background: linear-gradient(135deg, rgba(214,178,94,.26), rgba(255,222,138,.12));
+    }
+
+    .wrap{
+      max-width: var(--pageMax);
+      margin: 28px auto;
+      padding: 0 16px;
+    }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 14px;
+    }
+    .brand{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .brand .dot{
+      width: 10px; height: 10px; border-radius: 99px;
+      background: radial-gradient(circle, var(--accent2), rgba(255,222,138,.20));
+      box-shadow: 0 0 0 4px rgba(214,178,94,.10);
+    }
+    .actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      cursor:pointer;
+      font-weight: 900;
+      letter-spacing: .2px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn--gold{
+      border-color: rgba(214,178,94,.55);
+      background: linear-gradient(135deg, rgba(214,178,94,.18), rgba(255,222,138,.08));
+    }
+    .btn--gold:hover{
+      border-color: rgba(255,222,138,.70);
+      background: linear-gradient(135deg, rgba(214,178,94,.24), rgba(255,222,138,.12));
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-weight: 850;
+    }
+    .select{
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 8px 10px;
+      font-weight: 900;
+      outline:none;
+      cursor:pointer;
+    }
+    .select option{ color:#000; }
+
+    /* CV layout */
+    .cv{
+      display:grid;
+      grid-template-columns: var(--sideW) 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .side{
+      padding: 18px;
+      position: sticky;
+      top: 16px;
+    }
+
+    .main{
+      padding: 18px;
+    }
+
+    /* Profile block */
+    .avatar{
+      width: 86px; height: 86px;
+      border-radius: 22px;
+      border: 1px solid rgba(214,178,94,.55);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 12px 40px rgba(214,178,94,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom: 12px;
+      position: relative;
+      overflow:hidden;
+    }
+    .avatar::before{
+      content:"";
+      position:absolute;
+      inset:-50%;
+      background: radial-gradient(circle at 30% 30%, rgba(214,178,94,.18), transparent 55%);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+    .avatar img{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      filter: contrast(1.03) saturate(1.03);
+    }
+
+    .name{
+      margin:0;
+      font-size: 26px;
+      line-height: 1.1;
+      letter-spacing: -.4px;
+      font-weight: 1000;
+    }
+    .title{
+      margin: 6px 0 10px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
+
+    .list{
+      display:grid;
+      gap: 10px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+    .li{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      color: var(--text);
+    }
+    .li small{ color: var(--muted); display:block; font-weight:800; margin-top:2px; }
+    .icon{
+      width: 18px; height: 18px;
+      opacity: .95;
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .pillset{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: .15px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .pill--muted{ color: var(--muted); }
+
+    /* Headings */
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .section{
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .section:first-child{ border-top:none; padding-top:0; }
+
+    .summary{
+      margin: 0;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .item{
+      display:grid;
+      gap: 6px;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      margin-top: 10px;
+    }
+    .item-head{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .item-title{
+      font-weight: 1000;
+      letter-spacing: -.2px;
+    }
+    .item-meta{
+      color: var(--muted);
+      font-weight: 850;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .item p{
+      margin:0;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .bullets li{ margin: 5px 0; }
+
+    /* ✅ Contact form (added) */
+    .contactCard{ margin-top: 16px; }
+    .field{ margin-bottom: 12px; }
+    label{ display:block; font-weight: 1000; margin-bottom: 6px; }
+    input, textarea{
+      width:100%;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(15,15,16,.60);
+      color: var(--text);
+      outline:none;
+      transition: border-color .15s ease, background .15s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(214,178,94,.55);
+      background: rgba(15,15,16,.72);
+    }
+    .error{ display:block; min-height: 18px; margin-top: 4px; color: #ffb3b3; font-weight: 800; }
+    .form__status{ margin: 10px 0 0; color: var(--muted); font-weight: 800; }
+
+    /* ===============================
+       HEADER (slightly bigger, pro)
+       =============================== */
+    .container{
+      max-width: var(--pageMax);
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .header{ padding: 0 22px; }
+
+    .header .logo{ gap: 14px; }
+    .header .logo__mark{
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+    }
+    .header .logo__text{
+      font-size: 18px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+    }
+    .header .logo__text small{
+      font-size: 13px;
+      margin-top: 2px;
+      opacity: .95;
+    }
+
+    .header .nav{ gap: 10px; }
+    .header .nav__link{
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+    }
+
+    .header .wa-link{
+      padding: 12px 18px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 1000;
+    }
+
+    @media (max-width: 920px){
+      .header{ padding: 10px 12px; height: auto; }
+      .header__inner{ flex-wrap: wrap; }
+      .header .nav{ width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+    }
+
+    @media print{
+      .header, .burger, #nav{ display:none !important; }
+      #contactSection{ display:none !important; }
+      body{ padding-top:0 !important; }
+
+      body{
+        background:#fff !important;
+        color:#111 !important;
+      }
+      .wrap{ margin:0; max-width:none; padding:0; }
+      .topbar{ display:none !important; }
+      .card{
+        box-shadow:none !important;
+        border: 1px solid #ddd !important;
+        background:#fff !important;
+      }
+      .summary, .item p, .bullets, .title, .brand, .chip, .pill--muted, .item-meta{
+        color:#444 !important;
+      }
+      .pill, .btn, .select { border-color:#ddd !important; }
+      .avatar{ box-shadow:none !important; }
+      .cv{
+        grid-template-columns: 300px 1fr;
+        gap: 12px;
+      }
+      .side{ position: static !important; top:auto !important; }
+      a{ text-decoration:none !important; }
+    }
+
+    @media (max-width: 920px){
+      .cv{ grid-template-columns: 1fr; }
+      .side{ position: static; }
+    }
+
+    /* RTL support */
+    html[dir="rtl"] body{ direction: rtl; }
+    html[dir="rtl"] .header__inner{ flex-direction: row-reverse; }
+    html[dir="rtl"] .nav{ flex-direction: row-reverse; }
+    html[dir="rtl"] .topbar{ flex-direction: row-reverse; }
+    html[dir="rtl"] .item-head{ flex-direction: row-reverse; }
+    html[dir="rtl"] .list{ text-align: right; }
+    html[dir="rtl"] .li{ flex-direction: row-reverse; }
+    html[dir="rtl"] .bullets{ padding-right: 18px; padding-left: 0; }
+  
+
+/* ===== FIX MENU MOBILE (like index) ===== */
+.burger{
+  display:none;
+  width: 44px; height: 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:4px;
+}
+.burger span{
+  width: 18px; height:2px;
+  border-radius: 999px;
+  background: rgba(245,242,234,.95);
+  opacity:.95;
+}
+
+.langSelect{
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  padding: 9px 12px;
+  font-weight: 950;
+  outline:none;
+  cursor:pointer;
+}
+.langSelect option{ color:#000; }
+
+@media (max-width:900px){
+  .burger{ display:flex; }
+
+  /* nav hidden by default */
+  #nav{
+    display:none;
+    position:absolute;
+    top: calc(var(--headerH, 72px) - 2px);
+    left: 0;
+    right: 0;
+    z-index: 60;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: rgba(5,5,6,.92);
+    backdrop-filter: blur(14px);
+  }
+  #nav.is-open{ display:flex; }
+}
+</style>
+</head>
+
+<body>
+  <!-- ✅ HEADER -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="Retour">
+        <span class="logo__mark" aria-hidden="true">
+          <img alt="Ibrahim" src="WhatsApp Image 2026-01-02 at 10.33.22.jpeg" />
+        </span>
+        <span class="logo__text">
+          Ibrahim Beddouri
+          <small id="siteLabel">Page personnelle</small>
+        </span>
+      </a>
+
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Navigation principale">
+        <a class="nav__link" href="projets.html" id="navProjects">Projets</a>
+        <a class="nav__link" href="CV.html" id="navCv">CV</a>
+        <a class="nav__link" href="cree.html" id="navCreateCv">Créer CV</a>
+        <a class="nav__link" href="LOGIN.html" id="navLogin">Login</a>
+        <a class="nav__link" href="#contactSection" id="navContact">Contact</a>
+
+        <select class="langSelect" id="langSelect" aria-label="Langue">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+          <option value="ar">AR</option>
+          <option value="dar">DAR</option>
+        </select>
+
+        <a class="btn btn--gold wa-link"
+           href="https://api.whatsapp.com/send?phone=212779354634&text=Salam%20Ibrahim"
+           data-msg="Salam Ibrahim 👋."
+           rel="noreferrer"
+           id="waBtn">
+          WhatsApp
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="dot"></span><span id="cvBrand">CV — Ibrahim Beddouri</span></div>
+
+      <div class="actions">
+        <span class="chip" id="langHint">Langue : Français</span>
+
+        <select class="select" id="langSelect" aria-label="Langue">
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+        </select>
+
+        <button class="btn btn--gold" id="btnPrint" type="button" aria-label="Imprimer / PDF">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 8V4h10v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 17H6a3 3 0 0 1-3-3v-3a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3h-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span id="printLabel">Imprimer / PDF</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="cv">
+      <!-- Sidebar -->
+      <aside class="card side">
+        <div class="avatar">
+          <img src="WhatsApp Image 2026-01-02 at 10.33.22.jpeg" alt="Photo Ibrahim Beddouri" />
+        </div>
+
+        <h1 class="name">Ibrahim Beddouri</h1>
+        <div class="title" id="headline">Étudiant — Développement Digital</div>
+
+        <div class="divider"></div>
+
+        <ul class="list" aria-label="Coordonnées">
+          <li class="li">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.5 3.5h11l2 3v14a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-14l2-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M7 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div id="ageLabel">Âge : 18 ans</div>
+              <small id="bacLabel">Baccalauréat : 2025</small>
+            </div>
+          </li>
+
+          <li class="li">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M22 16.5v2a2.5 2.5 0 0 1-2.5 2.5h-1c-7.18 0-13-5.82-13-13v-1A2.5 2.5 0 0 1 8 2.5h2a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-1.1 2.1l-1.3.65a10 10 0 0 0 4.6 4.6l.65-1.3a2 2 0 0 1 2.1-1.1l3 .5a2 2 0 0 1 1.7 2Z"
+                    stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <div>+212 687 451 818</div>
+              <small id="phoneLabel">Téléphone</small>
+            </div>
+          </li>
+
+          <li class="li">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <a href="mailto:Ibrahimbeddouri29@gmail.com">Ibrahimbeddouri29@gmail.com</a>
+              <small id="emailLabel">Email</small>
+            </div>
+          </li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h2 id="skillsTitle">Compétences techniques</h2>
+        <div class="pillset" aria-label="Compétences">
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">Python</span>
+          <span class="pill">C</span>
+          <span class="pill">PHP</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 id="langsTitle">Langues</h2>
+        <div class="pillset" aria-label="Langues">
+          <span class="pill" id="langAr">Arabe — courant</span>
+          <span class="pill pill--muted" id="langFr">Français — niveau de base</span>
+          <span class="pill pill--muted" id="langEn">Anglais — niveau de base</span>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <section class="card main">
+        <div class="section">
+          <h2 id="profileTitle">Profil</h2>
+          <p class="summary" id="profileText">
+            Étudiant en développement digital, motivé et sérieux, avec une première expérience de stage.
+            Je recherche une opportunité pour contribuer à des projets réels, apprendre rapidement et apporter de la valeur à l’équipe.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2 id="eduTitle">Formation</h2>
+
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title" id="edu1Title">Diplôme — Développement Digital</div>
+              <div class="item-meta" id="edu1Meta">2027 (prévu)</div>
+            </div>
+            <p id="edu1Text">Parcours orienté web / programmation : bases solides, projets pratiques, logique et algorithmique.</p>
+          </div>
+
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title" id="edu2Title">Baccalauréat</div>
+              <div class="item-meta" id="edu2Meta">2025</div>
+            </div>
+            <p id="edu2Text">Obtention du baccalauréat en 2025.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 id="expTitle">Expérience</h2>
+
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title" id="exp1Title">Stage — Royal Air Force</div>
+              <div class="item-meta" id="exp1Meta">Stage</div>
+            </div>
+            <p id="exp1Text">
+              Expérience de stage dans un environnement professionnel, avec respect des procédures, esprit d’équipe et rigueur.
+            </p>
+            <ul class="bullets" id="exp1Bullets">
+              <li>Collaboration avec l’équipe et respect des consignes.</li>
+              <li>Organisation, ponctualité et sens des responsabilités.</li>
+              <li>Adaptation rapide aux tâches demandées.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 id="projectsTitle">Projets</h2>
+          <p class="summary" id="projectsHint">
+            Exemples de pages réalisées : page personnelle de présentation, page de connexion (login) et page de vente (e-commerce).
+          </p>
+
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title" id="proj1Title">Page personnelle (portfolio)</div>
+              <div class="item-meta">HTML • CSS</div>
+            </div>
+            <p id="proj1Text">Page de présentation moderne : sections, informations, liens de contact, responsive.</p>
+          </div>
+
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title" id="proj2Title">Page de connexion (Login)</div>
+              <div class="item-meta">HTML • CSS • JS</div>
+            </div>
+            <p id="proj2Text">Formulaire de connexion : validation, messages d’erreur, interactions UI.</p>
+          </div>
+
+          <div class="item">
+            <div class="item-head">
+              <div class="item-title" id="proj3Title">Page de vente (E-commerce)</div>
+              <div class="item-meta">HTML • CSS • JS</div>
+            </div>
+            <p id="proj3Text">Catalogue simple : cartes produits, prix, bouton acheter, mise en page responsive.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 id="strengthsTitle">Atouts</h2>
+          <div class="pillset">
+            <span class="pill" id="s1">Motivé</span>
+            <span class="pill" id="s2">Sérieux</span>
+            <span class="pill" id="s3">Esprit d’équipe</span>
+            <span class="pill" id="s4">Apprentissage rapide</span>
+            <span class="pill" id="s5">Rigueur</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ✅ CONTACT SECTION (bottom) -->
+    <section class="card contactCard" id="contactSection">
+      <div class="main">
+        <h2 id="contactTitle">Contact</h2>
+        <p class="summary" id="contactHint">Envoie-moi un message et WhatsApp s’ouvre directement.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <label for="c_name" id="cNameLabel">Nom</label>
+            <input id="c_name" name="c_name" type="text" placeholder="Votre nom" required minlength="2" />
+            <small class="error" data-error-for="c_name"></small>
+          </div>
+
+          <div class="field">
+            <label for="c_email" id="cEmailLabel">Email</label>
+            <input id="c_email" name="c_email" type="email" placeholder="vous@email.com" required />
+            <small class="error" data-error-for="c_email"></small>
+          </div>
+
+          <div class="field">
+            <label for="c_message" id="cMsgLabel">Message</label>
+            <textarea id="c_message" name="c_message" rows="5" placeholder="Votre message..." required minlength="10"></textarea>
+            <small class="error" data-error-for="c_message"></small>
+          </div>
+
+          <button class="btn btn--gold" type="submit" id="sendBtn" style="width:100%;">Envoyer (WhatsApp)</button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Print / Save PDF
+    document.getElementById("btnPrint").addEventListener("click", () => window.print());
+
+    // Texts
+    const t = {
+      fr: {
+        langHint: "Langue : Français",
+        printLabel: "Imprimer / PDF",
+        siteLabel: "Page personnelle",
+        navHome: "Page principale",
+        navProjects: "Projets",
+        navCV: "CV",
+        navCreate: "Crée CV",
+        navLogin: "Se connecter",
+        navContact: "Contact",
+        waBtn: "WhatsApp",
+        cvBrand: "CV — Ibrahim Beddouri",
+
+        headline: "Étudiant — Développement Digital",
+        ageLabel: "Âge : 18 ans",
+        bacLabel: "Baccalauréat : 2025",
+        phoneLabel: "Téléphone",
+        emailLabel: "Email",
+        skillsTitle: "Compétences techniques",
+        langsTitle: "Langues",
+        langAr: "Arabe — courant",
+        langFr: "Français — niveau de base",
+        langEn: "Anglais — niveau de base",
+
+        profileTitle: "Profil",
+        profileText:
+          "Étudiant en développement digital, motivé et sérieux, avec une première expérience de stage. " +
+          "Je recherche une opportunité pour contribuer à des projets réels, apprendre rapidement et apporter de la valeur à l’équipe.",
+
+        eduTitle: "Formation",
+        edu1Title: "Diplôme — Développement Digital",
+        edu1Meta: "2027 (prévu)",
+        edu1Text: "Parcours orienté web / programmation : bases solides, projets pratiques, logique et algorithmique.",
+        edu2Title: "Baccalauréat",
+        edu2Meta: "2025",
+        edu2Text: "Obtention du baccalauréat en 2025.",
+
+        expTitle: "Expérience",
+        exp1Title: "Stage — Royal Air Force",
+        exp1Meta: "Stage",
+        exp1Text: "Expérience de stage dans un environnement professionnel, avec respect des procédures, esprit d’équipe et rigueur.",
+        exp1Bullets: [
+          "Collaboration avec l’équipe et respect des consignes.",
+          "Organisation, ponctualité et sens des responsabilités.",
+          "Adaptation rapide aux tâches demandées."
+        ],
+
+        projectsTitle: "Projets",
+        projectsHint: "Exemples de pages réalisées : page personnelle de présentation, page de connexion (login) et page de vente (e-commerce).",
+        proj1Title: "Page personnelle (portfolio)",
+        proj1Text: "Page de présentation moderne : sections, informations, liens de contact, responsive.",
+        proj2Title: "Page de connexion (Login)",
+        proj2Text: "Formulaire de connexion : validation, messages d’erreur, interactions UI.",
+        proj3Title: "Page de vente (E-commerce)",
+        proj3Text: "Catalogue simple : cartes produits, prix, bouton acheter, mise en page responsive.",
+
+        strengthsTitle: "Atouts",
+        s1: "Motivé", s2: "Sérieux", s3: "Esprit d’équipe", s4: "Apprentissage rapide", s5: "Rigueur",
+
+        contactTitle: "Contact",
+        contactHint: "Envoie-moi un message et WhatsApp s’ouvre directement.",
+        cNameLabel: "Nom",
+        cEmailLabel: "Email",
+        cMsgLabel: "Message",
+        cNamePh: "Votre nom",
+        cEmailPh: "vous@email.com",
+        cMsgPh: "Votre message...",
+        sendBtn: "Envoyer (WhatsApp)",
+
+        errName: "Nom trop court.",
+        errEmail: "Email غير صالح.",
+        errMsg: "Écris un message plus long (min 10)."
+      },
+
+      en: {
+        langHint: "Language: English",
+        printLabel: "Print / PDF",
+        siteLabel: "Personal page",
+        navHome: "Home",
+        navProjects: "Projects",
+        navCV: "CV",
+        navCreate: "Create CV",
+        navLogin: "Log in",
+        navContact: "Contact",
+        waBtn: "WhatsApp",
+        cvBrand: "CV — Ibrahim Beddouri",
+
+        headline: "Student — Digital Development",
+        ageLabel: "Age: 18",
+        bacLabel: "Baccalaureate: 2025",
+        phoneLabel: "Phone",
+        emailLabel: "Email",
+        skillsTitle: "Technical Skills",
+        langsTitle: "Languages",
+        langAr: "Arabic — fluent",
+        langFr: "French — basic",
+        langEn: "English — basic",
+
+        profileTitle: "Profile",
+        profileText:
+          "Digital development student, motivated and reliable, with a first internship experience. " +
+          "I am looking for an opportunity to contribute to real projects, learn fast, and bring value to the team.",
+
+        eduTitle: "Education",
+        edu1Title: "Diploma — Digital Development",
+        edu1Meta: "2027 (expected)",
+        edu1Text: "Web / programming track: strong fundamentals, hands-on projects, logic and algorithms.",
+        edu2Title: "Baccalaureate",
+        edu2Meta: "2025",
+        edu2Text: "Baccalaureate obtained in 2025.",
+
+        expTitle: "Experience",
+        exp1Title: "Internship — Royal Air Force",
+        exp1Meta: "Internship",
+        exp1Text: "Internship experience in a professional environment, with strong procedures, teamwork, and discipline.",
+        exp1Bullets: [
+          "Worked with the team and followed guidelines.",
+          "Organization, punctuality, and responsibility.",
+          "Quick adaptation to assigned tasks."
+        ],
+
+        projectsTitle: "Projects",
+        projectsHint: "Examples: personal portfolio page, login page, and a simple e-commerce sales page.",
+        proj1Title: "Personal portfolio page",
+        proj1Text: "Modern presentation: sections, info, contact links, responsive layout.",
+        proj2Title: "Login page",
+        proj2Text: "Login form: validation, error messages, UI interactions.",
+        proj3Title: "E-commerce sales page",
+        proj3Text: "Simple catalog: product cards, prices, buy button, responsive layout.",
+
+        strengthsTitle: "Strengths",
+        s1: "Motivated", s2: "Reliable", s3: "Team spirit", s4: "Fast learner", s5: "Discipline",
+
+        contactTitle: "Contact",
+        contactHint: "Send me a message and WhatsApp opens directly.",
+        cNameLabel: "Name",
+        cEmailLabel: "Email",
+        cMsgLabel: "Message",
+        cNamePh: "Your name",
+        cEmailPh: "you@email.com",
+        cMsgPh: "Your message...",
+        sendBtn: "Send (WhatsApp)",
+
+        errName: "Name is too short.",
+        errEmail: "Invalid email.",
+        errMsg: "Write a longer message (min 10)."
+      },
+
+      ar: {
+        langHint: "اللغة: العربية",
+        printLabel: "طباعة / PDF",
+        siteLabel: "الصفحة الشخصية",
+        navHome: "الرئيسية",
+        navProjects: "المشاريع",
+        navCV: "السيرة الذاتية",
+        navCreate: "إنشاء CV",
+        navLogin: "تسجيل الدخول",
+        navContact: "اتصل بي",
+        waBtn: "واتساب",
+        cvBrand: "السيرة الذاتية — إبراهيم بدّوري",
+
+        headline: "طالب — التطوير الرقمي",
+        ageLabel: "العمر: 18 سنة",
+        bacLabel: "البكالوريا: 2025",
+        phoneLabel: "الهاتف",
+        emailLabel: "البريد الإلكتروني",
+        skillsTitle: "المهارات التقنية",
+        langsTitle: "اللغات",
+        langAr: "العربية — جيد",
+        langFr: "الفرنسية — مستوى أساسي",
+        langEn: "الإنجليزية — مستوى أساسي",
+
+        profileTitle: "الملف الشخصي",
+        profileText:
+          "طالب في التطوير الرقمي، جادّ ومحفّز، مع تجربة تدريب أولى. " +
+          "أبحث عن فرصة للمساهمة في مشاريع حقيقية، والتعلّم بسرعة، وإضافة قيمة للفريق.",
+
+        eduTitle: "التكوين",
+        edu1Title: "دبلوم — التطوير الرقمي",
+        edu1Meta: "2027 (متوقّع)",
+        edu1Text: "مسار موجّه للويب/البرمجة: أساسيات قوية، مشاريع تطبيقية، منطق وخوارزميات.",
+        edu2Title: "البكالوريا",
+        edu2Meta: "2025",
+        edu2Text: "الحصول على شهادة البكالوريا سنة 2025.",
+
+        expTitle: "التجربة",
+        exp1Title: "تدريب — Royal Air Force",
+        exp1Meta: "تدريب",
+        exp1Text: "تجربة تدريب في بيئة مهنية، مع احترام الإجراءات، روح الفريق والانضباط.",
+        exp1Bullets: [
+          "التعاون مع الفريق واحترام التعليمات.",
+          "التنظيم، الانضباط، وتحمل المسؤولية.",
+          "التكيّف السريع مع المهام المطلوبة."
+        ],
+
+        projectsTitle: "المشاريع",
+        projectsHint: "أمثلة: صفحة شخصية للتعريف، صفحة تسجيل الدخول، وصفحة بيع (متجر بسيط).",
+        proj1Title: "صفحة شخصية (Portfolio)",
+        proj1Text: "صفحة تعريف عصرية: أقسام، معلومات، روابط تواصل، تصميم متجاوب.",
+        proj2Title: "صفحة تسجيل الدخول (Login)",
+        proj2Text: "نموذج دخول: تحقق، رسائل خطأ، وتفاعلات واجهة المستخدم.",
+        proj3Title: "صفحة بيع (متجر بسيط)",
+        proj3Text: "كتالوج بسيط: بطاقات منتجات، أثمنة، زر شراء، تصميم متجاوب.",
+
+        strengthsTitle: "نقاط القوة",
+        s1: "محفّز", s2: "جاد", s3: "روح الفريق", s4: "تعلّم سريع", s5: "انضباط",
+
+        contactTitle: "اتصل بي",
+        contactHint: "أرسل رسالة وسيتم فتح واتساب مباشرة.",
+        cNameLabel: "الاسم",
+        cEmailLabel: "البريد الإلكتروني",
+        cMsgLabel: "الرسالة",
+        cNamePh: "اسمك",
+        cEmailPh: "you@email.com",
+        cMsgPh: "اكتب رسالتك...",
+        sendBtn: "إرسال (واتساب)",
+
+        errName: "الاسم قصير جداً.",
+        errEmail: "البريد غير صحيح.",
+        errMsg: "اكتب رسالة أطول (10 أحرف على الأقل)."
+      }
+    };
+
+    function setText(id, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = value;
+    }
+    function setPlaceholder(id, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.setAttribute("placeholder", value || "");
+    }
+
+    function setLang(lang){
+      const dict = t[lang] || t.fr;
+
+      setText("langHint", dict.langHint);
+      setText("printLabel", dict.printLabel);
+      setText("siteLabel", dict.siteLabel);
+
+      setText("navHome", dict.navHome);
+      setText("navProjects", dict.navProjects);
+      setText("navCV", dict.navCV);
+      setText("navCreate", dict.navCreate);
+      setText("navLogin", dict.navLogin);
+      setText("navContact", dict.navContact);
+      setText("waBtn", dict.waBtn);
+      setText("cvBrand", dict.cvBrand);
+
+      setText("headline", dict.headline);
+      setText("ageLabel", dict.ageLabel);
+      setText("bacLabel", dict.bacLabel);
+      setText("phoneLabel", dict.phoneLabel);
+      setText("emailLabel", dict.emailLabel);
+      setText("skillsTitle", dict.skillsTitle);
+      setText("langsTitle", dict.langsTitle);
+      setText("langAr", dict.langAr);
+      setText("langFr", dict.langFr);
+      setText("langEn", dict.langEn);
+
+      setText("profileTitle", dict.profileTitle);
+      setText("profileText", dict.profileText);
+
+      setText("eduTitle", dict.eduTitle);
+      setText("edu1Title", dict.edu1Title);
+      setText("edu1Meta", dict.edu1Meta);
+      setText("edu1Text", dict.edu1Text);
+      setText("edu2Title", dict.edu2Title);
+      setText("edu2Meta", dict.edu2Meta);
+      setText("edu2Text", dict.edu2Text);
+
+      setText("expTitle", dict.expTitle);
+      setText("exp1Title", dict.exp1Title);
+      setText("exp1Meta", dict.exp1Meta);
+      setText("exp1Text", dict.exp1Text);
+
+      const ul = document.getElementById("exp1Bullets");
+      if (ul && Array.isArray(dict.exp1Bullets)){
+        ul.innerHTML = dict.exp1Bullets.map(x => `<li>${x}</li>`).join("");
+      }
+
+      setText("projectsTitle", dict.projectsTitle);
+      setText("projectsHint", dict.projectsHint);
+      setText("proj1Title", dict.proj1Title);
+      setText("proj1Text", dict.proj1Text);
+      setText("proj2Title", dict.proj2Title);
+      setText("proj2Text", dict.proj2Text);
+      setText("proj3Title", dict.proj3Title);
+      setText("proj3Text", dict.proj3Text);
+
+      setText("strengthsTitle", dict.strengthsTitle);
+      setText("s1", dict.s1);
+      setText("s2", dict.s2);
+      setText("s3", dict.s3);
+      setText("s4", dict.s4);
+      setText("s5", dict.s5);
+
+      // Contact
+      setText("contactTitle", dict.contactTitle);
+      setText("contactHint", dict.contactHint);
+      setText("cNameLabel", dict.cNameLabel);
+      setText("cEmailLabel", dict.cEmailLabel);
+      setText("cMsgLabel", dict.cMsgLabel);
+      setText("sendBtn", dict.sendBtn);
+
+      setPlaceholder("c_name", dict.cNamePh);
+      setPlaceholder("c_email", dict.cEmailPh);
+      setPlaceholder("c_message", dict.cMsgPh);
+
+      localStorage.setItem("cv_lang", lang);
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
+    }
+
+    // Save/load language
+    const saved = localStorage.getItem("cv_lang") || "fr";
+    const sel = document.getElementById("langSelect");
+    sel.value = saved;
+    setLang(saved);
+    sel.addEventListener("change", (e) => setLang(e.target.value));
+
+    // WhatsApp + Form
+    const WA_PHONE = "212779354634";
+    function waUrl(msg){
+      return "https://api.whatsapp.com/send?phone=" + WA_PHONE + "&text=" + encodeURIComponent(msg);
+    }
+
+    function setError(fieldName, msg) {
+      const el = document.querySelector(`[data-error-for="${fieldName}"]`);
+      if (el) el.textContent = msg || "";
+    }
+    function isEmailValid(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      statusEl.textContent = "";
+
+      const lang = localStorage.getItem("cv_lang") || "fr";
+      const dict = t[lang] || t.fr;
+
+      const name = form.c_name.value.trim();
+      const email = form.c_email.value.trim();
+      const message = form.c_message.value.trim();
+
+      let ok = true;
+
+      if (name.length < 2) { setError("c_name", dict.errName); ok = false; } else setError("c_name","");
+      if (!isEmailValid(email)) { setError("c_email", dict.errEmail); ok = false; } else setError("c_email","");
+      if (message.length < 10) { setError("c_message", dict.errMsg); ok = false; } else setError("c_message","");
+
+      if (!ok) return;
+
+      const fullMessage =
+        "Salam Ibrahim 👋\n" +
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Message: " + message;
+
+      window.location.href = waUrl(fullMessage);
+    });
+  </script>
+
+<script>
+/* ===== Burger menu toggle (like index) ===== */
+(function () {
+  const burger = document.getElementById("burger");
+  const nav = document.getElementById("nav");
+  if (!burger || !nav) return;
+
+  const close = () => {
+    nav.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+  };
+
+  burger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = nav.classList.toggle("is-open");
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  // close when clicking a link
+  nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
+
+  // close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (nav.classList.contains("is-open") && !nav.contains(e.target) && !burger.contains(e.target)) close();
+  });
+
+  // close on resize to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) close();
+  });
+
+  // if there are language buttons (data-lang), sync select
+  const langSelect = document.getElementById("langSelect");
+  if (langSelect) {
+    langSelect.addEventListener("change", () => {
+      const v = langSelect.value;
+      const btn = document.querySelector(`[data-lang="${v}"]`);
+      if (btn) btn.click();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
