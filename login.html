@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="WhatsApp Image 2026-01-02 at 10.33.22.jpeg">
+  <title>Login | Ibrahim Beddouri</title>
+  <meta name="description" content="Login - Ibrahim Beddouri" />
+
+  <style>
+    :root{
+      --bg0:#050506;
+      --bg1:#0b0b0d;
+
+      --text:#f6f2e9;
+      --muted:#c9c2b3;
+
+      --gold:#d6b25e;
+      --gold2:#ffde8a;
+
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --radius: 20px;
+      --radius2: 26px;
+      --max: 1120px;
+      --headerH: 74px;
+      --line: rgba(255,255,255,.10);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 15% -10%, rgba(214,178,94,.18), transparent 60%),
+        radial-gradient(800px 520px at 90% 10%, rgba(255,222,138,.10), transparent 60%),
+        radial-gradient(900px 650px at 50% 110%, rgba(214,178,94,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ max-width:var(--max); margin:0 auto; padding: 0 18px; }
+    ::selection{ background: rgba(214,178,94,.30); }
+
+    /* Grain */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events:none;
+      opacity: .10;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    /* Glow blobs */
+    .glow{
+      position:absolute;
+      pointer-events:none;
+      filter: blur(35px);
+      opacity:.30;
+      width: 520px; height: 520px;
+      transform: translateZ(0);
+    }
+    .g1{ top:-160px; left:-180px;
+      background: radial-gradient(circle at 30% 30%, rgba(214,178,94,.9), transparent 60%);
+    }
+    .g2{ top: 60px; right:-240px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,222,138,.75), transparent 60%);
+    }
+    .g3{ bottom:-240px; left:25%;
+      background: radial-gradient(circle at 30% 30%, rgba(214,178,94,.55), transparent 60%);
+    }
+
+    /* Header */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--headerH);
+      display:flex;
+      align-items:center;
+      backdrop-filter: blur(14px);
+      background: rgba(5,5,6,.62);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .header__inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      width:100%;
+    }
+
+    .logo{
+      display:flex; align-items:center; gap:12px;
+      font-weight: 950;
+      letter-spacing: .3px;
+    }
+
+    .logo__mark{
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(214,178,94,.45);
+      box-shadow: 0 12px 40px rgba(214,178,94,.22);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    .logo__mark img{
+      width:100%; height:100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      filter: contrast(1.05) saturate(1.05);
+    }
+
+    .logo__text small{
+      display:block;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .35px;
+      font-size: 12px;
+      margin-top: -2px;
+    }
+
+    .nav{ display:flex; align-items:center; gap: 14px; }
+    .nav__link{
+      color: var(--muted);
+      padding: 9px 10px;
+      border-radius: 12px;
+      transition: background .15s ease, color .15s ease, transform .15s ease;
+      white-space: nowrap;
+    }
+    .nav__link:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      cursor:pointer;
+      font-weight: 950;
+      letter-spacing: .2px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.12);
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.20);
+      box-shadow: 0 24px 70px rgba(0,0,0,.65);
+    }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+
+    .btn--ghost{ background: rgba(255,255,255,.04); box-shadow:none; }
+    .btn--gold{
+      border-color: rgba(214,178,94,.55);
+      background: linear-gradient(135deg, rgba(214,178,94,.18), rgba(255,222,138,.07));
+    }
+    .btn--gold:hover{
+      border-color: rgba(255,222,138,.70);
+      background: linear-gradient(135deg, rgba(214,178,94,.26), rgba(255,222,138,.12));
+    }
+
+    .burger{
+      display:none;
+      width: 44px; height: 40px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:4px;
+    }
+    .burger span{
+      width: 18px; height:2px; border-radius: 999px;
+      background: rgba(245,242,234,.95);
+      opacity:.95;
+    }
+
+    /* ✅ Language UI (between Contact and WhatsApp) */
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .select{
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 8px 10px;
+      font-weight: 950;
+      outline:none;
+      cursor:pointer;
+      white-space: nowrap;
+    }
+    .select option{ color:#000; }
+
+    /* Page */
+    .page{
+      position:relative;
+      padding: 44px 0 54px;
+    }
+
+    .panel{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:auto auto -120px -120px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(214,178,94,.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    .title{
+      margin:0 0 10px;
+      font-size: 26px;
+      letter-spacing: -.4px;
+    }
+    .sub{
+      margin:0 0 16px;
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    /* Login box */
+    .auth{
+      display:grid;
+      gap: 12px;
+    }
+    .avatarBig{
+      width: 92px;
+      height: 92px;
+      border-radius: 24px;
+      border: 1px solid rgba(214,178,94,.55);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 12px 40px rgba(214,178,94,.18);
+      overflow:hidden;
+      margin: 6px auto 2px;
+    }
+    .avatarBig img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.04);
+      filter: contrast(1.03) saturate(1.03);
+    }
+
+    .auth h2{
+      margin: 0;
+      text-align:center;
+      letter-spacing:-.3px;
+      font-size: 22px;
+    }
+    .auth p{
+      margin:0;
+      text-align:center;
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    .field{ margin-top: 6px; }
+    label{ display:block; font-weight: 1000; margin-bottom: 6px; }
+    input, textarea{
+      width:100%;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(15,15,16,.60);
+      color: var(--text);
+      outline:none;
+      transition: border-color .15s ease, background .15s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(214,178,94,.55);
+      background: rgba(15,15,16,.72);
+    }
+
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 850;
+    }
+    .row a{ text-decoration: underline; text-underline-offset: 3px; }
+    .row a:hover{ opacity:.9; }
+
+    .error{
+      display:block;
+      min-height: 18px;
+      margin-top: 6px;
+      color: #ffb3b3;
+      font-weight: 800;
+    }
+
+    .hr{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 16px 0;
+    }
+
+    .note{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    /* Footer */
+    .footer{
+      padding: 22px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.12);
+    }
+    .footer__inner{
+      display:flex; justify-content:space-between; align-items:center; gap: 12px; flex-wrap:wrap;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .to-top{ color: var(--muted); }
+    .to-top:hover{ color: var(--text); }
+
+    /* Mobile */
+    @media (max-width: 920px){
+      .burger{ display:flex; }
+      .nav{
+        position: fixed;
+        top: calc(var(--headerH) + 8px);
+        left: 16px;
+        right: 16px;
+        display:none;
+        flex-direction:column;
+        gap:10px;
+        padding: 14px;
+        border-radius: var(--radius2);
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(5,5,6,.92);
+        backdrop-filter: blur(14px);
+      }
+      .nav.is-open{ display:flex; }
+      .chip, .select{ width:100%; justify-content:space-between; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow g1" aria-hidden="true"></div>
+  <div class="glow g2" aria-hidden="true"></div>
+  <div class="glow g3" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="Retour">
+        <span class="logo__mark" aria-hidden="true">
+          <img alt="Ibrahim" src="WhatsApp Image 2026-01-02 at 10.33.22.jpeg" />
+        </span>
+        <span class="logo__text">
+          Ibrahim Beddouri
+          <small id="logoSub">Page personnelle</small>
+        </span>
+      </a>
+
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Navigation principale">
+        <a class="nav__link" href="index.html" id="navHome">Page principale</a>
+        <a class="nav__link" href="projets.html" id="navProjects" rel="noreferrer">Projets</a>
+        <a class="nav__link" href="cv.html" id="navCv" rel="noreferrer">CV</a>
+        <a class="nav__link" href="cree.html" id="navCreate" rel="noreferrer">Créer CV</a>
+        <a class="nav__link" href="#contact" id="navContact">Contact</a>
+
+        <!-- ✅ Languages (between Contact and WhatsApp) -->
+        <select class="select" id="langSelect" aria-label="Langue">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+          <option value="ar">AR</option>
+          <option value="ma">DAR</option>
+        </select>
+
+        <a class="btn btn--gold wa-link" id="waBtn"
+           href="https://api.whatsapp.com/send?phone=212779354634&text=Salam%20Ibrahim"
+           data-msg="Salam Ibrahim 👋."
+           rel="noreferrer">
+          <span id="waBtnText">WhatsApp</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="panel" id="login">
+        <h1 class="title" id="pageTitle">Log in</h1>
+        <p class="sub" id="pageSub">واجهة Login نظيفة (UI فقط) — بلا Backend.</p>
+
+        <div class="auth">
+          <div class="avatarBig">
+            <img src="WhatsApp Image 2026-01-02 at 10.33.22.jpeg" alt="Photo Ibrahim" />
+          </div>
+
+          <h2 id="loginTitle">Connexion</h2>
+          <p id="loginHint">دخل Email و Mot de passe.</p>
+
+          <form id="loginForm" novalidate>
+                <div class="field">
+                  <label for="email" id="lblLoginEmail">Email</label>
+                  <input id="email" name="email" type="email" placeholder="ex: name@gmail.com" required />
+                  <small class="error" data-error-for="email"></small>
+                </div>
+
+               <div class="field">
+                 <label for="password" id="lblLoginPass">Mot de passe</label>
+                 <input id="password" name="password" type="password" placeholder="••••••••" required minlength="6" />
+                 <small class="error" data-error-for="password"></small>
+              </div>
+
+             <button class="btn btn--gold" id="btnLogin" type="submit" style="width:100%; margin-top:10px;">
+                 Se connecter
+             </button>
+
+              <div class="row">
+                 <a href="cree_un_compte.html"span id="noAccountText">Pas encore de compte ?</span></a>
+                 <a href="cree_un_compte.html" >Créer un compte</a>
+              </div>
+
+              <p class="error" id="authStatus" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="hr"></div>
+
+          <!-- Contact (under login) -->
+          <div id="contact">
+            <h2 class="title" id="contactTitle" style="font-size:22px; margin-bottom:6px;">Contact</h2>
+            <p class="sub" id="contactSub">إلا كان عندك شي مشكل، صيفط ليا رسالة وكيحل WhatsApp مباشرة.</p>
+
+            <form id="contactForm" novalidate>
+              <div class="field">
+                <label for="name" id="lblName">Nom</label>
+                <input id="name" name="name" type="text" placeholder="Votre nom" required minlength="2" />
+                <small class="error" data-error-for="name"></small>
+              </div>
+
+              <div class="field">
+                <label for="cemail" id="lblCEmail">Email</label>
+                <input id="cemail" name="cemail" type="email" placeholder="vous@email.com" required />
+                <small class="error" data-error-for="cemail"></small>
+              </div>
+
+              <div class="field">
+                <label for="message" id="lblMsg">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Votre message..." required minlength="10"></textarea>
+                <small class="error" data-error-for="message"></small>
+              </div>
+
+              <button class="btn btn--gold" id="btnSend" type="submit" style="width:100%; margin-top:10px;">
+                Envoyer (WhatsApp)
+              </button>
+
+              <p class="error" id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="note">
+              <strong id="noteWaLabel">WhatsApp:</strong>
+              <a class="wa-link"
+                 href="https://api.whatsapp.com/send?phone=212779354634&text=Salam%20Ibrahim"
+                 data-msg="Salam Ibrahim 👋
+Bghit ntwassal m3ak."
+                 rel="noreferrer">+212 779 354 634</a><br/>
+              <strong id="noteEmailLabel">Email:</strong>
+              <a href="mailto:ibrahimbeddouri29@gmail.com" style="text-decoration:underline; text-underline-offset:3px;">
+                ibrahimbeddouri29@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Ibrahim Beddouri. Tous droits réservés.</p>
+      <a href="#top" class="to-top">↑ Retour en haut</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
+    burger?.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", String(isOpen));
+    });
+    document.querySelectorAll(".nav a").forEach((a) => {
+      a.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        burger.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // WhatsApp helper
+    const WA_PHONE = "212779354634";
+    function waUrl(msg){
+      return "https://api.whatsapp.com/send?phone=" + WA_PHONE + "&text=" + encodeURIComponent(msg);
+    }
+
+    // ===== Language (FR / EN / AR / DARIJA) =====
+    const t = {
+      fr: {
+        docTitle: "Login | Ibrahim Beddouri",
+        langHint: "Langue : Français",
+        logoSub: "Page personnelle",
+        navHome: "Page principale",
+        navProjects: "Projets",
+        navCv: "CV",
+        navCreate: "Créer CV",
+        navContact: "Contact",
+        waBtnText: "WhatsApp",
+
+        pageTitle: "Log in",
+        pageSub: "Interface Login propre (UI seulement) — sans Backend.",
+
+        loginTitle: "Connexion",
+        loginHint: "Entrez votre Email et votre mot de passe.",
+        lblLoginEmail: "Email",
+        phLoginEmail: "ex: name@gmail.com",
+        lblLoginPass: "Mot de passe",
+        phLoginPass: "••••••••",
+        btnLogin: "Se connecter",
+        noAccountText: "Pas encore de compte ?",
+        createAccount: "Créer un compte",
+
+        contactTitle: "Contact",
+        contactSub: "Si vous avez un problème, envoyez-moi un message et WhatsApp s'ouvre directement.",
+        lblName: "Nom",
+        phName: "Votre nom",
+        lblCEmail: "Email",
+        phCEmail: "vous@email.com",
+        lblMsg: "Message",
+        phMsg: "Votre message...",
+        btnSend: "Envoyer (WhatsApp)",
+
+        noteWaLabel: "WhatsApp:",
+        noteEmailLabel: "Email:",
+
+        errEmail: "Email invalide.",
+        errPass: "Mot de passe trop court (6+).",
+        loginOk: "✅ OK (UI seulement) — pas de Backend.",
+        createInfo: "ℹ️ Créer un compte: UI seulement. (Pas de Backend).",
+
+        errName: "Nom trop court.",
+        errMsg: "Écrivez un message plus long (au moins 10 caractères).",
+
+        waDefault: "Salam Ibrahim 👋.",
+        waFromForm: (name, email, msg) =>
+          "Salam Ibrahim 👋\n" +
+          "Nom: " + name + "\n" +
+          "Email: " + email + "\n" +
+          "Message: " + msg
+      },
+
+      en: {
+        docTitle: "Login | Ibrahim Beddouri",
+        langHint: "Language: English",
+        logoSub: "Personal page",
+        navHome: "Home",
+        navProjects: "Projects",
+        navCv: "CV",
+        navCreate: "Create CV",
+        navContact: "Contact",
+        waBtnText: "WhatsApp",
+
+        pageTitle: "Log in",
+        pageSub: "Clean login UI (UI only) — no backend.",
+
+        loginTitle: "Sign in",
+        loginHint: "Enter your email and password.",
+        lblLoginEmail: "Email",
+        phLoginEmail: "e.g. name@gmail.com",
+        lblLoginPass: "Password",
+        phLoginPass: "••••••••",
+        btnLogin: "Sign in",
+        noAccountText: "No account yet?",
+        createAccount: "Create an account",
+
+        contactTitle: "Contact",
+        contactSub: "If you have any issue, send me a message and WhatsApp opens directly.",
+        lblName: "Name",
+        phName: "Your name",
+        lblCEmail: "Email",
+        phCEmail: "you@email.com",
+        lblMsg: "Message",
+        phMsg: "Your message...",
+        btnSend: "Send (WhatsApp)",
+
+        noteWaLabel: "WhatsApp:",
+        noteEmailLabel: "Email:",
+
+        errEmail: "Invalid email.",
+        errPass: "Password is too short (6+).",
+        loginOk: "✅ OK (UI only) — no backend.",
+        createInfo: "ℹ️ Create account: UI only. (No backend).",
+
+        errName: "Name is too short.",
+        errMsg: "Write a longer message (at least 10 characters).",
+
+        waDefault: "Hi Ibrahim 👋.",
+        waFromForm: (name, email, msg) =>
+          "Hi Ibrahim 👋\n" +
+          "Name: " + name + "\n" +
+          "Email: " + email + "\n" +
+          "Message: " + msg
+      },
+
+      ar: {
+        docTitle: "تسجيل الدخول | Ibrahim Beddouri",
+        langHint: "اللغة: العربية",
+        logoSub: "صفحة شخصية",
+        navHome: "الرئيسية",
+        navProjects: "المشاريع",
+        navCv: "السيرة الذاتية",
+        navCreate: "إنشاء سيرة",
+        navContact: "تواصل",
+        waBtnText: "واتساب",
+
+        pageTitle: "تسجيل الدخول",
+        pageSub: "واجهة تسجيل دخول نظيفة (واجهة فقط) — بدون Backend.",
+
+        loginTitle: "دخول",
+        loginHint: "أدخل البريد وكلمة المرور.",
+        lblLoginEmail: "البريد الإلكتروني",
+        phLoginEmail: "مثال: name@gmail.com",
+        lblLoginPass: "كلمة المرور",
+        phLoginPass: "••••••••",
+        btnLogin: "دخول",
+        noAccountText: "ما عندكش حساب؟",
+        createAccount: "إنشاء حساب",
+
+        contactTitle: "تواصل",
+        contactSub: "إلا كان عندك شي مشكل، صيفط ليا رسالة وكيحل واتساب مباشرة.",
+        lblName: "الاسم",
+        phName: "اسمك",
+        lblCEmail: "البريد الإلكتروني",
+        phCEmail: "you@email.com",
+        lblMsg: "الرسالة",
+        phMsg: "اكتب رسالتك...",
+        btnSend: "إرسال (واتساب)",
+
+        noteWaLabel: "واتساب:",
+        noteEmailLabel: "البريد:",
+
+        errEmail: "البريد غير صالح.",
+        errPass: "كلمة المرور قصيرة (6+).",
+        loginOk: "✅ OK (واجهة فقط) — ما كاينش Backend.",
+        createInfo: "ℹ️ إنشاء حساب: غير UI. (ما كاينش Backend).",
+
+        errName: "الاسم قصير جداً.",
+        errMsg: "اكتب رسالة أطول (على الأقل 10 أحرف).",
+
+        waDefault: "سلام إبراهيم 👋.",
+        waFromForm: (name, email, msg) =>
+          "سلام إبراهيم 👋\n" +
+          "الاسم: " + name + "\n" +
+          "البريد: " + email + "\n" +
+          "الرسالة: " + msg
+      },
+
+      ma: {
+        docTitle: "كونيكسيون | Ibrahim Beddouri",
+        langHint: "اللغة: الدارجة",
+        logoSub: "صفحة شخصية",
+        navHome: "الصفحة الرئيسية",
+        navProjects: "المشاريع",
+        navCv: "CV ديالي",
+        navCreate: "صاوب CV ديالك",
+        navContact: "كونطاكت",
+        waBtnText: "واتساب",
+
+        pageTitle: "كونيكسيون",
+        pageSub: "واجهة Login نقية (غير UI) — بلا Backend.",
+
+        loginTitle: "دخل",
+        loginHint: "دخل الإيميل و الموط باس.",
+        lblLoginEmail: "الإيميل",
+        phLoginEmail: "مثال: name@gmail.com",
+        lblLoginPass: "موط باس",
+        phLoginPass: "••••••••",
+        btnLogin: "كونيكطا",
+        noAccountText: "مازال ما عندكش كونت؟",
+        createAccount: "صاوب كونت",
+
+        contactTitle: "تواصل",
+        contactSub: "إلا كان عندك شي مشكل، صيفط ليا رسالة وكيحل WhatsApp مباشرة.",
+        lblName: "السمية",
+        phName: "السمية ديالك",
+        lblCEmail: "الإيميل",
+        phCEmail: "you@email.com",
+        lblMsg: "الرسالة",
+        phMsg: "كتب رسالتك...",
+        btnSend: "صيفط (واتساب)",
+
+        noteWaLabel: "واتساب:",
+        noteEmailLabel: "إيميل:",
+
+        errEmail: "الإيميل ماشي صحيح.",
+        errPass: "الموط باس قصيرة (6+).",
+        loginOk: "✅ OK (غير UI) — ما كاينش Backend.",
+        createInfo: "ℹ️ صاوب كونت: غير UI. (ما كاينش Backend).",
+
+        errName: "السمية قصيرة بزاف.",
+        errMsg: "كتب رسالة أطول (على الأقل 10 حروف).",
+
+        waDefault: "سلام إبراهيم 👋.",
+        waFromForm: (name, email, msg) =>
+          "سلام إبراهيم 👋\n" +
+          "سميتي: " + name + "\n" +
+          "Email: " + email + "\n" +
+          "Message: " + msg
+      }
+    };
+
+    function setText(id, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = value;
+    }
+
+    function setLang(lang){
+      const dict = t[lang] || t.fr;
+
+      // lang + direction
+      document.documentElement.lang = (lang === "ma") ? "ar" : lang;
+      document.documentElement.dir = (lang === "ar" || lang === "ma") ? "rtl" : "ltr";
+
+      document.title = dict.docTitle;
+
+      setText("langHint", dict.langHint);
+      setText("logoSub", dict.logoSub);
+
+      setText("navHome", dict.navHome);
+      setText("navProjects", dict.navProjects);
+      setText("navCv", dict.navCv);
+      setText("navCreate", dict.navCreate);
+      setText("navContact", dict.navContact);
+      setText("waBtnText", dict.waBtnText);
+
+      setText("pageTitle", dict.pageTitle);
+      setText("pageSub", dict.pageSub);
+
+      setText("loginTitle", dict.loginTitle);
+      setText("loginHint", dict.loginHint);
+
+      setText("lblLoginEmail", dict.lblLoginEmail);
+      document.getElementById("email").placeholder = dict.phLoginEmail;
+
+      setText("lblLoginPass", dict.lblLoginPass);
+      document.getElementById("password").placeholder = dict.phLoginPass;
+
+      setText("btnLogin", dict.btnLogin);
+
+      setText("noAccountText", dict.noAccountText);
+      setText("createAccountLink", dict.createAccount);
+
+      setText("contactTitle", dict.contactTitle);
+      setText("contactSub", dict.contactSub);
+
+      setText("lblName", dict.lblName);
+      document.getElementById("name").placeholder = dict.phName;
+
+      setText("lblCEmail", dict.lblCEmail);
+      document.getElementById("cemail").placeholder = dict.phCEmail;
+
+      setText("lblMsg", dict.lblMsg);
+      document.getElementById("message").placeholder = dict.phMsg;
+
+      setText("btnSend", dict.btnSend);
+
+      setText("noteWaLabel", dict.noteWaLabel);
+      setText("noteEmailLabel", dict.noteEmailLabel);
+
+      // Update default WhatsApp message for header button (language-aware)
+      const waBtn = document.getElementById("waBtn");
+      if (waBtn) waBtn.setAttribute("data-msg", dict.waDefault);
+
+      localStorage.setItem("site_lang", lang);
+
+      // refresh links now
+      refreshWhatsAppLinks();
+    }
+
+    // WhatsApp links (language-aware)
+    function refreshWhatsAppLinks(){
+      const lang = localStorage.getItem("site_lang") || "fr";
+      const dict = t[lang] || t.fr;
+
+      document.querySelectorAll(".wa-link").forEach((a) => {
+        const msg = a.getAttribute("data-msg") || dict.waDefault || "Salam Ibrahim 👋";
+        a.href = waUrl(msg);
+
+        // mobile friendly
+        a.setAttribute("target", "_self");
+        if (!a.dataset.boundClick){
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = a.href;
+          }, { passive: false });
+          a.dataset.boundClick = "1";
+        }
+      });
+    }
+
+    const saved = localStorage.getItem("site_lang") || "fr";
+    const sel = document.getElementById("langSelect");
+    sel.value = saved;
+    setLang(saved);
+    sel.addEventListener("change", (e) => setLang(e.target.value));
+
+    // Validation helpers
+    function setError(fieldName, msg) {
+      const el = document.querySelector(`[data-error-for="${fieldName}"]`);
+      if (el) el.textContent = msg || "";
+    }
+    function isEmailValid(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // Login (UI only)
+    const loginForm = document.getElementById("loginForm");
+    const authStatus = document.getElementById("authStatus");
+    loginForm?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      authStatus.textContent = "";
+
+      const lang = localStorage.getItem("site_lang") || "fr";
+      const dict = t[lang] || t.fr;
+
+      const email = loginForm.email.value.trim();
+      const password = loginForm.password.value.trim();
+
+      let ok = true;
+      if (!isEmailValid(email)) { setError("email", dict.errEmail); ok = false; } else setError("email","");
+      if (password.length < 6) { setError("password", dict.errPass); ok = false; } else setError("password","");
+
+      if (!ok) return;
+
+      authStatus.textContent = dict.loginOk;
+    });
+
+    document.getElementById("createAccountLink")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      const lang = localStorage.getItem("site_lang") || "fr";
+      const dict = t[lang] || t.fr;
+      authStatus.textContent = dict.createInfo;
+    });
+
+    // Contact form -> WhatsApp
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+
+    contactForm?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      formStatus.textContent = "";
+
+      const lang = localStorage.getItem("site_lang") || "fr";
+      const dict = t[lang] || t.fr;
+
+      const name = contactForm.name.value.trim();
+      const email = contactForm.cemail.value.trim();
+      const message = contactForm.message.value.trim();
+
+      let ok = true;
+      if (name.length < 2) { setError("name", dict.errName); ok = false; } else setError("name","");
+      if (!isEmailValid(email)) { setError("cemail", dict.errEmail); ok = false; } else setError("cemail","");
+      if (message.length < 10) { setError("message", dict.errMsg); ok = false; } else setError("message","");
+
+      if (!ok) return;
+
+      const fullMessage = dict.waFromForm(name, email, message);
+      window.location.href = waUrl(fullMessage);
+    });
+  </script>
+</body>
+</html>

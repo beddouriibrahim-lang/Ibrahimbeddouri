@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="WhatsApp Image 2026-01-02 at 10.33.22.jpeg">
+  <title>Ibrahim Beddouri | Page personnelle</title>
+  <meta name="description" content="Page personnelle - Ibrahim Beddouri" />
+
+  <style>
+    :root{
+      --bg0:#050506;
+      --bg1:#0b0b0d;
+
+      --text:#f6f2e9;
+      --muted:#c9c2b3;
+
+      --gold:#d6b25e;
+      --gold2:#ffde8a;
+
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --radius: 20px;
+      --radius2: 26px;
+      --max: 1120px;
+      --headerH: 74px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 15% -10%, rgba(214,178,94,.18), transparent 60%),
+        radial-gradient(800px 520px at 90% 10%, rgba(255,222,138,.10), transparent 60%),
+        radial-gradient(900px 650px at 50% 110%, rgba(214,178,94,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ max-width:var(--max); margin:0 auto; padding: 0 18px; }
+    ::selection{ background: rgba(214,178,94,.30); }
+
+    /* Grain */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events:none;
+      opacity: .10;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    /* Glow blobs */
+    .glow{
+      position:absolute;
+      pointer-events:none;
+      filter: blur(35px);
+      opacity:.30;
+      width: 520px; height: 520px;
+      transform: translateZ(0);
+    }
+    .g1{ top:-160px; left:-180px;
+      background: radial-gradient(circle at 30% 30%, rgba(214,178,94,.9), transparent 60%);
+    }
+    .g2{ top: 60px; right:-240px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,222,138,.75), transparent 60%);
+    }
+    .g3{ bottom:-240px; left:25%;
+      background: radial-gradient(circle at 30% 30%, rgba(214,178,94,.55), transparent 60%);
+    }
+
+    /* Header */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--headerH);
+      display:flex;
+      align-items:center;
+      backdrop-filter: blur(14px);
+      background: rgba(5,5,6,.62);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .header__inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      width:100%;
+    }
+
+    .logo{
+      display:flex; align-items:center; gap:12px;
+      font-weight: 950;
+      letter-spacing: .3px;
+    }
+
+    /* PHOTO logo (instead of IB) */
+    .logo__mark{
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(214,178,94,.45);
+      box-shadow: 0 12px 40px rgba(214,178,94,.22);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    .logo__mark img{
+      width:100%; height:100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      filter: contrast(1.05) saturate(1.05);
+    }
+
+    .logo__text small{
+      display:block;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .35px;
+      font-size: 12px;
+      margin-top: -2px;
+    }
+
+    .nav{ display:flex; align-items:center; gap: 14px; }
+    .nav__link{
+      color: var(--muted);
+      padding: 9px 10px;
+      border-radius: 12px;
+      transition: background .15s ease, color .15s ease, transform .15s ease;
+    }
+    .nav__link:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      cursor:pointer;
+      font-weight: 950;
+      letter-spacing: .2px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.12);
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.20);
+      box-shadow: 0 24px 70px rgba(0,0,0,.65);
+    }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+
+    .btn--ghost{ background: rgba(255,255,255,.04); box-shadow:none; }
+    .btn--gold{
+      border-color: rgba(214,178,94,.55);
+      background: linear-gradient(135deg, rgba(214,178,94,.18), rgba(255,222,138,.07));
+    }
+    .btn--gold:hover{
+      border-color: rgba(255,222,138,.70);
+      background: linear-gradient(135deg, rgba(214,178,94,.26), rgba(255,222,138,.12));
+    }
+
+    .burger{
+      display:none;
+      width: 44px; height: 40px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:4px;
+    }
+    .burger span{
+      width: 18px; height:2px; border-radius: 999px;
+      background: rgba(245,242,234,.95);
+      opacity:.95;
+    }
+
+    /* ✅ Language select (same style) */
+    .langSelect{
+      border-radius: 999px;
+      border: 1видpx solid rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 9px 12px;
+      font-weight: 950;
+      outline:none;
+      cursor:pointer;
+    }
+    .langSelect option{ color:#000; }
+
+    /* Hero */
+    .hero{ position:relative; padding: 54px 0 26px; }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,178,94,.28);
+      background: rgba(214,178,94,.08);
+      color: var(--muted);
+      font-weight: 900;
+      letter-spacing: .25px;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 999px;
+      background: radial-gradient(circle, var(--gold2), rgba(255,222,138,.20));
+      box-shadow: 0 0 0 4px rgba(214,178,94,.10);
+    }
+    h1{
+      margin: 12px 0 10px;
+      line-height:1.08;
+      font-size: clamp(30px, 4vw, 50px);
+      letter-spacing: -0.7px;
+    }
+    .lead{
+      color: var(--muted);
+      margin: 0 0 18px;
+      max-width: 62ch;
+      font-size: 16px;
+    }
+    .hero__actions{ display:flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ✅ Quick nav (between hero and skills) */
+    .quick-nav{
+      margin-top: 18px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding: 16px;
+      overflow:hidden;
+      position:relative;
+    }
+    .quick-nav::before{
+      content:"";
+      position:absolute;
+      inset:auto auto -110px -110px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(214,178,94,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .quick-actions{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+
+    /* Sections */
+    .section{ padding: 46px 0; }
+    .section--alt{
+      background: rgba(255,255,255,.02);
+      border-top: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .section__head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .section__head h2{
+      margin:0;
+      font-size: 26px;
+      letter-spacing: -.4px;
+    }
+    .section__head p{
+      margin:0;
+      color: var(--muted);
+      max-width: 65ch;
+    }
+    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .panel{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:auto auto -120px -120px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(214,178,94,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .note{
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    /* Contact */
+    .link{
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .link:hover{ opacity: .9; }
+    .contact-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+
+    /* Form */
+    .form .field{ margin-bottom: 12px; }
+    label{ display:block; font-weight: 1000; margin-bottom: 6px; }
+    input, textarea{
+      width:100%;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(15,15,16,.60);
+      color: var(--text);
+      outline:none;
+      transition: border-color .15s ease, background .15s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(214,178,94,.55);
+      background: rgba(15,15,16,.72);
+    }
+    .error{ display:block; min-height: 18px; margin-top: 4px; color: #ffb3b3; font-weight: 800; }
+    .form__status{ margin: 10px 0 0; color: var(--muted); }
+
+    /* Reveal */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.is-in{ opacity: 1; transform: translateY(0); }
+
+    /* Footer */
+    .footer{
+      padding: 22px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.12);
+    }
+    .footer__inner{
+      display:flex; justify-content:space-between; align-items:center; gap: 12px; flex-wrap:wrap;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .to-top{ color: var(--muted); }
+    .to-top:hover{ color: var(--text); }
+
+    /* Mobile */
+    @media (max-width: 920px){
+      .burger{ display:flex; }
+      .nav{
+        position: fixed;
+        top: calc(var(--headerH) + 8px);
+        left: 16px;
+        right: 16px;
+        display:none;
+        flex-direction:column;
+        gap:10px;
+        padding: 14px;
+        border-radius: var(--radius2);
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(5,5,6,.92);
+        backdrop-filter: blur(14px);
+      }
+      .nav.is-open{ display:flex; }
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow g1" aria-hidden="true"></div>
+  <div class="glow g2" aria-hidden="true"></div>
+  <div class="glow g3" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="logo" href="#top" aria-label="Retour en haut" id="topLink">
+        <span class="logo__mark" aria-hidden="true">
+          <img alt="Ibrahim" src="WhatsApp Image 2026-01-02 at 10.33.22.jpeg" />
+        </span>
+        <span class="logo__text">
+          Ibrahim Beddouri
+          <small id="siteSubtitle">Page personnelle</small>
+        </span>
+      </a>
+
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Navigation principale">
+        <a class="nav__link" href="projets.html" rel="noreferrer" id="navProjects">Projets</a>
+        <a class="nav__link" href="cv.html" rel="noreferrer" id="navCv">CV</a>
+
+        <!-- ✅ Creer CV -->
+        <a class="nav__link" href="cree.html" rel="noreferrer" id="navCreateCv">Créer CV</a>
+
+        <a class="nav__link" href="login.html" id="navAbout">Login</a>
+        <a class="nav__link" href="#contact" id="navContact">Contact</a>
+
+        <!-- ✅ Language -->
+        <select class="langSelect" id="langSelect" aria-label="Langue">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+          <option value="ar">AR</option>
+          <option value="dar">DAR</option>
+        </select>
+
+        <!-- WhatsApp -->
+        <a class="btn btn--gold wa-link"
+           href="https://api.whatsapp.com/send?phone=212779354634&text=Salam%20Ibrahim"
+           data-msg="Salam Ibrahim 👋."
+           rel="noreferrer"
+           id="navWhatsapp">
+          WhatsApp
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container reveal">
+        <div class="pill"><span class="dot"></span> <span id="pillText">Black & Gold • Page personnelle</span></div>
+
+        <h1 id="heroTitle">مرحبا بكم فالصفحة الشخصية ديالي 👋</h1>
+
+        <p class="lead" id="heroLead">
+          أنا <strong>Ibrahim Beddouri</strong>.
+          هنا غادي تلقاو معلومات عليّا وطرق التواصل معايا.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--gold" href="#about" id="btnAbout">عرف عليّا</a>
+          <a class="btn btn--ghost" href="#contact" id="btnContact">تواصل معايا</a>
+          <a class="btn btn--ghost" href="https://instagram.com/ibrahimbeddouri" target="_blank" rel="noreferrer" id="btnInsta">Instagram</a>
+        </div>
+
+        <!-- ✅ NEW BLOCK (before skills buttons) -->
+        <div class="quick-nav reveal">
+          <h3 id="quickTitle">Accès rapide</h3>
+          <p id="quickText">
+            Pour voir mon CV, cliquez sur <b>CV</b>. Pour créer votre propre CV, cliquez sur <b>Créer CV</b>.
+            Pour voir mes projets, cliquez sur <b>Projets</b>.
+          </p>
+
+          <div class="quick-actions">
+            <a class="btn btn--gold" href="CV.html" id="quickCv">Voir mon CV</a>
+            <a class="btn btn--ghost" href="CREE .html" id="quickCreate">Créer votre CV</a>
+            <a class="btn btn--ghost" href="projets.html" id="quickProjects">Voir mes projets</a>
+          </div>
+        </div>
+
+      </div>
+
+      <br>
+
+      <!-- ✅ SKILLS BUTTONS (SAME PLACE, unchanged) -->
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+        <span class="btn btn--ghost" id="skillHtml">HTML — كنخدم به</span>
+        <span class="btn btn--ghost" id="skillCss">CSS — كنخدم به</span>
+        <span class="btn btn--ghost" id="skillPy">Python — كنخدم به</span>
+        <span class="btn btn--ghost" id="skillC">C — كنخدم به</span>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2 id="aboutTitle">À propos</h2>
+            <p id="aboutSub">Iwa hada howa ana 😅 .</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel reveal">
+            <h3 style="margin:0 0 6px;" id="aboutBox1Title">Présentation</h3>
+            <p style="margin:0; color:var(--muted);" id="aboutBox1Text">
+              Salam , smiti Ibrahim Beddouri, 3omri 18 ans, kanaskon f'Oujda, Maroc. Kanbghik n3rf 3la technologie w programmation.
+              Hadi hiya saf7ti chakhsiya fin ghadi tl9aw ma3loumat 3lia w wt3rfoni kter.
+            </p>
+            <div class="note" id="aboutNote">
+              ila m7taj chi 7aja ola bghiti t3rf 3lia aktar, matrtach ttsift lia message!
+            </div>
+          </div>
+
+          <div class="panel reveal">
+            <h3 style="margin:0 0 6px;" id="aboutBox2Title">Infos</h3>
+            <div class="note" style="margin-top:10px;">
+              <strong id="labelWa">WhatsApp:</strong>
+              <a class="link wa-link"
+                 href="https://api.whatsapp.com/send?phone=212779354634&text=Salam%20Ibrahim"
+                 data-msg="Salam Ibrahim 👋
+Bghit ntwassal m3ak."
+                 rel="noreferrer"
+                 id="aboutWhatsapp">+212 779 354 634</a><br/>
+              <strong id="labelEmail">Email:</strong>
+              <a class="link" href="mailto:ibrahimbeddouri29@gmail.com" id="aboutEmail">ibrahimbeddouri29@gmail.com</a><br/>
+              <strong id="labelInsta">Instagram:</strong>
+              <a class="link" href="https://instagram.com/ibrahimbeddouri" target="_blank" rel="noreferrer" id="aboutInstagram">@ibrahimbeddouri</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section--alt" id="contact">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <h2 id="contactTitle">Contact</h2>
+            <p id="contactSub">صيفط ليا رسالة وكتحل WhatsApp مباشرة.</p>
+          </div>
+
+          <a class="btn btn--gold wa-link"
+             href="https://api.whatsapp.com/send?phone=212779354634&text=Salam%20Ibrahim"
+             data-msg="Salam Ibrahim 👋
+Bghit ntwassal m3ak b chi ma3loumat."
+             rel="noreferrer"
+             id="contactWhatsappBtn">
+            <span id="contactWhatsappBtnText">WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel reveal">
+            <h3 style="margin:0 0 6px;" id="shortcutsTitle">Raccourcis</h3>
+            <p style="margin:0; color:var(--muted);" id="shortcutsSub">اختار الطريقة اللي كتناسبك.</p>
+
+            <div class="contact-actions">
+              <a class="btn btn--gold wa-link"
+                 href="https://api.whatsapp.com/send?phone=212779354634&text=Salam%20Ibrahim"
+                 data-msg="Salam Ibrahim 👋
+Bghit ntwassal m3ak b chi ma3loumat."
+                 rel="noreferrer"
+                 id="shortWhatsapp">
+                <span id="shortWhatsappText">WhatsApp</span>
+              </a>
+              <a class="btn btn--ghost" href="mailto:ibrahimbeddouri29@gmail.com" id="shortEmail">Email</a>
+              <a class="btn btn--ghost" href="https://instagram.com/ibrahimbeddouri" target="_blank" rel="noreferrer" id="shortInsta">Instagram</a>
+            </div>
+          </div>
+
+          <form class="panel form reveal" id="contactForm" novalidate>
+            <h3 style="margin:0 0 10px;" id="formTitle">Envoyer un message</h3>
+
+            <div class="field">
+              <label for="name" id="labelName">Nom</label>
+              <input id="name" name="name" type="text" placeholder="Votre nom" required minlength="2" />
+              <small class="error" data-error-for="name"></small>
+            </div>
+
+            <div class="field">
+              <label for="email" id="labelEmail2">Email</label>
+              <input id="email" name="email" type="email" placeholder="vous@email.com" required />
+              <small class="error" data-error-for="email"></small>
+            </div>
+
+            <div class="field">
+              <label for="message" id="labelMessage">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Votre message..." required minlength="10"></textarea>
+              <small class="error" data-error-for="message"></small>
+            </div>
+
+            <button class="btn btn--gold" type="submit" id="formSubmit">Envoyer (WhatsApp)</button>
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p id="footerCopy">© <span id="year"></span> Ibrahim Beddouri. Tous droits réservés.</p>
+      <a href="#top" class="to-top" id="toTop">↑ Retour en haut</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
+
+    burger?.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.querySelectorAll(".nav a").forEach((a) => {
+      a.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        burger.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Reveal animation
+    const items = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(el => io.observe(el));
+
+    // ✅ WhatsApp (Mobile safe)
+    const WA_PHONE = "212779354634";
+    function waUrl(msg){
+      return "https://api.whatsapp.com/send?phone=" + WA_PHONE + "&text=" + encodeURIComponent(msg);
+    }
+
+    function applyWhatsAppLinks(){
+      document.querySelectorAll(".wa-link").forEach((a) => {
+        const msg = a.getAttribute("data-msg") || "Salam Ibrahim 👋";
+        a.href = waUrl(msg);
+
+        // مهم: باش ما يفتحش tab جديدة فالموبايل
+        a.setAttribute("target", "_self");
+
+        // مهم: نجبر redirect مباشر (ما كيتبلكاش)
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = a.href;
+        }, { passive: false });
+      });
+    }
+    applyWhatsAppLinks();
+
+    // Form validation helpers
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    function setError(fieldName, msg) {
+      const el = document.querySelector(`[data-error-for="${fieldName}"]`);
+      if (el) el.textContent = msg || "";
+    }
+    function isEmailValid(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    /* ✅ FULL LANGUAGE (FR / EN / AR / DAR) — EVERYTHING */
+    const t = {
+      fr: {
+        htmlLang: "fr",
+
+        siteSubtitle: "Page personnelle",
+        burgerLabel: "Ouvrir le menu",
+
+        navProjects: "Projets",
+        navCv: "CV",
+        navCreateCv: "Créer CV",
+        navAbout: "Se Connecté",
+        navContact: "Contact",
+
+        pillText: "Black & Gold • Page personnelle",
+
+        heroTitle: "Bienvenue sur ma page personnelle 👋",
+        heroLeadHTML: "Je suis <strong>Ibrahim Beddouri</strong>. Ici, vous trouverez des informations sur moi et comment me contacter.",
+        btnAbout: "En savoir plus",
+        btnContact: "Me contacter",
+
+        quickTitle: "Accès rapide",
+        quickTextHTML: "Pour voir mon CV, cliquez sur <b>CV</b>. Pour créer votre propre CV, cliquez sur <b>Créer CV</b>. Pour voir mes projets, cliquez sur <b>Projets</b>.",
+        quickCv: "Voir mon CV",
+        quickCreate: "Créer votre CV",
+        quickProjects: "Voir mes projets",
+
+        skillHtml: "HTML — je travaille avec",
+        skillCss: "CSS — je travaille avec",
+        skillPy: "Python — je travaille avec",
+        skillC: "C — je travaille avec",
+
+        aboutTitle: "À propos",
+        aboutSub: "Voici un peu sur moi 😅.",
+        aboutBox1Title: "Présentation",
+        aboutBox1Text: "Bonjour, je m'appelle Ibrahim Beddouri, j'ai 18 ans, j'habite à Oujda (Maroc). Je m'intéresse à la technologie et à la programmation. Sur cette page, vous trouverez des infos sur moi et mes contacts.",
+        aboutNote: "Si tu as besoin de quelque chose ou si tu veux en savoir plus, n'hésite pas à m'envoyer un message !",
+        aboutBox2Title: "Infos",
+        labelWa: "WhatsApp:",
+        labelEmail: "Email:",
+        labelInsta: "Instagram:",
+
+        contactTitle: "Contact",
+        contactSub: "Envoie-moi un message et WhatsApp s'ouvre directement.",
+        shortcutsTitle: "Raccourcis",
+        shortcutsSub: "Choisis la méthode qui te convient.",
+
+        formTitle: "Envoyer un message",
+        labelName: "Nom",
+        phName: "Votre nom",
+        labelEmail2: "Email",
+        phEmail: "vous@email.com",
+        labelMessage: "Message",
+        phMessage: "Votre message...",
+        formSubmit: "Envoyer (WhatsApp)",
+
+        errName: "Nom trop court.",
+        errEmail: "Email invalide.",
+        errMsg: "Écris un message plus long (au moins 10 caractères).",
+
+        footerCopyHTML: "© <span id=\"year\"></span> Ibrahim Beddouri. Tous droits réservés.",
+        toTop: "↑ Retour en haut",
+
+        waMsgNav: "Bonjour Ibrahim 👋",
+        waMsgContact: "Bonjour Ibrahim 👋\nJe veux te contacter.",
+        waMsgMore: "Bonjour Ibrahim 👋\nJ'aimerais avoir des informations."
+      },
+
+      en: {
+        htmlLang: "en",
+
+        siteSubtitle: "Personal page",
+        burgerLabel: "Open menu",
+
+        navProjects: "Projects",
+        navCv: "CV",
+        navCreateCv: "Create CV",
+        navAbout: "Login",
+        navContact: "Contact",
+
+        pillText: "Black & Gold • Personal page",
+
+        heroTitle: "Welcome to my personal page 👋",
+        heroLeadHTML: "I am <strong>Ibrahim Beddouri</strong>. Here you can find information about me and ways to contact me.",
+        btnAbout: "About me",
+        btnContact: "Contact me",
+
+        quickTitle: "Quick access",
+        quickTextHTML: "To view my CV, click <b>CV</b>. To create your own CV, click <b>Create CV</b>. To see my projects, click <b>Projects</b>.",
+        quickCv: "View my CV",
+        quickCreate: "Create your CV",
+        quickProjects: "View my projects",
+
+        skillHtml: "HTML — I work with it",
+        skillCss: "CSS — I work with it",
+        skillPy: "Python — I work with it",
+        skillC: "C — I work with it",
+
+        aboutTitle: "About",
+        aboutSub: "A little about me 😅.",
+        aboutBox1Title: "Introduction",
+        aboutBox1Text: "Hi, my name is Ibrahim Beddouri, I'm 18 years old, and I live in Oujda, Morocco. I like technology and programming. This page contains info about me and how to reach me.",
+        aboutNote: "If you need anything or want to know more, feel free to send me a message!",
+        aboutBox2Title: "Info",
+        labelWa: "WhatsApp:",
+        labelEmail: "Email:",
+        labelInsta: "Instagram:",
+
+        contactTitle: "Contact",
+        contactSub: "Send me a message and WhatsApp will open directly.",
+        shortcutsTitle: "Shortcuts",
+        shortcutsSub: "Choose the method that suits you.",
+
+        formTitle: "Send a message",
+        labelName: "Name",
+        phName: "Your name",
+        labelEmail2: "Email",
+        phEmail: "you@email.com",
+        labelMessage: "Message",
+        phMessage: "Your message...",
+        formSubmit: "Send (WhatsApp)",
+
+        errName: "Name is too short.",
+        errEmail: "Invalid email.",
+        errMsg: "Write a longer message (at least 10 characters).",
+
+        footerCopyHTML: "© <span id=\"year\"></span> Ibrahim Beddouri. All rights reserved.",
+        toTop: "↑ Back to top",
+
+        waMsgNav: "Hi Ibrahim 👋",
+        waMsgContact: "Hi Ibrahim 👋\nI want to contact you.",
+        waMsgMore: "Hi Ibrahim 👋\nI would like more information."
+      },
+
+      ar: {
+        htmlLang: "ar",
+
+        siteSubtitle: "صفحة شخصية",
+        burgerLabel: "فتح القائمة",
+
+        navProjects: "المشاريع",
+        navCv: "السيرة الذاتية",
+        navCreateCv: "إنشاء سيرة",
+        navAbout: " تسجيل",
+        navContact: "تواصل",
+
+        pillText: "Black & Gold • صفحة شخصية",
+
+        heroTitle: "مرحباً بكم في صفحتي الشخصية 👋",
+        heroLeadHTML: "أنا <strong>Ibrahim Beddouri</strong>. هنا ستجدون معلومات عني وطرق التواصل معي.",
+        btnAbout: "تعرف عليّ",
+        btnContact: "تواصل معي",
+
+        quickTitle: "وصول سريع",
+        quickTextHTML: "لمشاهدة سيرتي الذاتية اضغط <b>السيرة الذاتية</b>. لإنشاء سيرتك اضغط <b>إنشاء سيرة</b>. لمشاهدة مشاريعي اضغط <b>المشاريع</b>.",
+        quickCv: "مشاهدة سيرتي",
+        quickCreate: "إنشاء سيرتك",
+        quickProjects: "مشاهدة مشاريعي",
+
+        skillHtml: "HTML — أستعمله",
+        skillCss: "CSS — أستعمله",
+        skillPy: "Python — أستعمله",
+        skillC: "C — أستعمله",
+
+        aboutTitle: "نبذة عني",
+        aboutSub: "معلومات بسيطة عني 😅.",
+        aboutBox1Title: "تقديم",
+        aboutBox1Text: "السلام عليكم، اسمي إبراهيم بدوري، عمري 18 سنة وأسكن في وجدة، المغرب. أحب التكنولوجيا والبرمجة. في هذه الصفحة ستجدون معلومات عني وطرق التواصل.",
+        aboutNote: "إذا احتجت أي شيء أو تريد معرفة المزيد، لا تتردد في مراسلتي!",
+        aboutBox2Title: "معلومات",
+        labelWa: "واتساب:",
+        labelEmail: "البريد:",
+        labelInsta: "إنستغرام:",
+
+        contactTitle: "تواصل",
+        contactSub: "أرسل رسالة وسيفتح واتساب مباشرة.",
+        shortcutsTitle: "روابط سريعة",
+        shortcutsSub: "اختر الطريقة المناسبة لك.",
+
+        formTitle: "إرسال رسالة",
+        labelName: "الاسم",
+        phName: "اسمك",
+        labelEmail2: "البريد الإلكتروني",
+        phEmail: "you@email.com",
+        labelMessage: "الرسالة",
+        phMessage: "اكتب رسالتك...",
+        formSubmit: "إرسال (واتساب)",
+
+        errName: "الاسم قصير جداً.",
+        errEmail: "البريد غير صالح.",
+        errMsg: "اكتب رسالة أطول (10 أحرف على الأقل).",
+
+        footerCopyHTML: "© <span id=\"year\"></span> Ibrahim Beddouri. جميع الحقوق محفوظة.",
+        toTop: "↑ رجوع للأعلى",
+
+        waMsgNav: "السلام عليكم إبراهيم 👋",
+        waMsgContact: "السلام عليكم إبراهيم 👋\nبغيت نتواصل معاك.",
+        waMsgMore: "السلام عليكم إبراهيم 👋\nبغيت معلومات."
+      },
+
+      dar: {
+        htmlLang: "ary",
+
+        siteSubtitle: "الصفحة الشخصية",
+        burgerLabel: "حلّ المينيو",
+
+        navProjects: "المشاريع",
+        navCv: "السيفي",
+        navCreateCv: "صايب سيفي",
+        navAbout: "تسجيل",
+        navContact: "تواصل",
+
+        pillText: "Black & Gold • الصفحة الشخصية",
+
+        heroTitle: "مرحبا بكم فالصّفحة الشخصية ديالي 👋",
+        heroLeadHTML: "أنا <strong>Ibrahim Beddouri</strong>. هنا غادي تلقاو معلومات عليّا وطرق التواصل معايا.",
+        btnAbout: "عرف عليّا",
+        btnContact: "تواصل معايا",
+
+        quickTitle: "دخول سريع",
+        quickTextHTML: "إلا بغيتي تشوف السيفي ديالي كليكي على <b>السيفي</b>. إلا بغيتي تصايب السيفي ديالك كليكي على <b>صايب سيفي</b>. وإلا بغيتي تشوف المشاريع كليكي على <b>المشاريع</b>.",
+        quickCv: "شوف السيفي ديالي",
+        quickCreate: "صايب السيفي ديالك",
+        quickProjects: "شوف المشاريع ديالي",
+
+        skillHtml: "HTML — كنخدم به",
+        skillCss: "CSS — كنخدم به",
+        skillPy: "Python — كنخدم به",
+        skillC: "C — كنخدم به",
+
+        aboutTitle: "عليا",
+        aboutSub: "هادي شوية ديال المعلومات 😅.",
+        aboutBox1Title: "تقديم",
+        aboutBox1Text: "سلام، سميتي إبراهيم بدّوري، عمري 18 عام وكنسكن فوجدّة، المغرب. كانبغي التكنولوجيا والبرمجة. فهاد الصفحة غادي تلقاو معلومات عليّا وطرق التواصل.",
+        aboutNote: "إلا محتاج شي حاجة ولا بغيتي تعرف كثر، مرحبا رسّلني!",
+        aboutBox2Title: "معلومات",
+        labelWa: "واتساب:",
+        labelEmail: "الإيميل:",
+        labelInsta: "إنستغرام:",
+
+        contactTitle: "تواصل",
+        contactSub: "صيفط ليا رسالة وكيحلّ WhatsApp مباشرة.",
+        shortcutsTitle: "روابط سريعة",
+        shortcutsSub: "اختار الطريقة اللي كتناسبك.",
+
+        formTitle: "صيفط رسالة",
+        labelName: "السمية",
+        phName: "السمية ديالك",
+        labelEmail2: "الإيميل",
+        phEmail: "you@email.com",
+        labelMessage: "الرسالة",
+        phMessage: "كتب الرسالة ديالك...",
+        formSubmit: "صيفط (واتساب)",
+
+        errName: "السمية قصيرة بزاف.",
+        errEmail: "الإيميل ماشي صحيح.",
+        errMsg: "كتب رسالة أطول (على الأقل 10 حروف).",
+
+        footerCopyHTML: "© <span id=\"year\"></span> Ibrahim Beddouri. جميع الحقوق محفوظة.",
+        toTop: "↑ رجع لفوق",
+
+        waMsgNav: "سلام إبراهيم 👋",
+        waMsgContact: "سلام إبراهيم 👋\nبغيت نتواصل معاك.",
+        waMsgMore: "سلام إبراهيم 👋\nبغيت شي معلومات."
+      }
+    };
+
+    function setText(id, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = value;
+    }
+    function setHTML(id, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = value;
+    }
+    function setAttr(id, attr, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.setAttribute(attr, value);
+    }
+
+    // ✅ setLang: update EVERYTHING
+    let currentLang = "fr";
+    function setLang(lang){
+      const dict = t[lang] || t.fr;
+      currentLang = lang;
+
+      document.documentElement.lang = dict.htmlLang || lang;
+
+      setText("siteSubtitle", dict.siteSubtitle);
+      burger?.setAttribute("aria-label", dict.burgerLabel);
+
+      setText("navProjects", dict.navProjects);
+      setText("navCv", dict.navCv);
+      setText("navCreateCv", dict.navCreateCv);
+      setText("navAbout", dict.navAbout);
+      setText("navContact", dict.navContact);
+
+      setText("pillText", dict.pillText);
+
+      setText("heroTitle", dict.heroTitle);
+      setHTML("heroLead", dict.heroLeadHTML);
+
+      setText("btnAbout", dict.btnAbout);
+      setText("btnContact", dict.btnContact);
+
+      setText("quickTitle", dict.quickTitle);
+      setHTML("quickText", dict.quickTextHTML);
+      setText("quickCv", dict.quickCv);
+      setText("quickCreate", dict.quickCreate);
+      setText("quickProjects", dict.quickProjects);
+
+      setText("skillHtml", dict.skillHtml);
+      setText("skillCss", dict.skillCss);
+      setText("skillPy", dict.skillPy);
+      setText("skillC", dict.skillC);
+
+      setText("aboutTitle", dict.aboutTitle);
+      setText("aboutSub", dict.aboutSub);
+      setText("aboutBox1Title", dict.aboutBox1Title);
+      setText("aboutBox1Text", dict.aboutBox1Text);
+      setText("aboutNote", dict.aboutNote);
+      setText("aboutBox2Title", dict.aboutBox2Title);
+      setText("labelWa", dict.labelWa);
+      setText("labelEmail", dict.labelEmail);
+      setText("labelInsta", dict.labelInsta);
+
+      setText("contactTitle", dict.contactTitle);
+      setText("contactSub", dict.contactSub);
+      setText("contactWhatsappBtnText", "WhatsApp");
+
+      setText("shortcutsTitle", dict.shortcutsTitle);
+      setText("shortcutsSub", dict.shortcutsSub);
+      setText("shortWhatsappText", "WhatsApp");
+      setText("shortEmail", "Email");
+      setText("shortInsta", "Instagram");
+
+      setText("formTitle", dict.formTitle);
+      setText("labelName", dict.labelName);
+      setAttr("name", "placeholder", dict.phName);
+      setText("labelEmail2", dict.labelEmail2);
+      setAttr("email", "placeholder", dict.phEmail);
+      setText("labelMessage", dict.labelMessage);
+      setAttr("message", "placeholder", dict.phMessage);
+      setText("formSubmit", dict.formSubmit);
+
+      setHTML("footerCopy", dict.footerCopyHTML);
+      setText("toTop", dict.toTop);
+
+      // Update WhatsApp messages (then re-apply links)
+      const navWa = document.getElementById("navWhatsapp");
+      const contactWa = document.getElementById("contactWhatsappBtn");
+      const shortWa = document.getElementById("shortWhatsapp");
+      const aboutWa = document.getElementById("aboutWhatsapp");
+
+      navWa?.setAttribute("data-msg", dict.waMsgNav);
+      contactWa?.setAttribute("data-msg", dict.waMsgMore);
+      shortWa?.setAttribute("data-msg", dict.waMsgMore);
+      aboutWa?.setAttribute("data-msg", dict.waMsgContact);
+
+      applyWhatsAppLinks();
+
+      localStorage.setItem("site_lang", lang);
+    }
+
+    // Load saved lang
+    const langSelect = document.getElementById("langSelect");
+    const savedLang = localStorage.getItem("site_lang") || "fr";
+    if (langSelect) langSelect.value = savedLang;
+    setLang(savedLang);
+
+    langSelect?.addEventListener("change", (e) => setLang(e.target.value));
+
+    // ✅ Form -> WhatsApp (NO window.open) + fully translated errors + message labels
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      statusEl.textContent = "";
+
+      const dict = t[currentLang] || t.fr;
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      let ok = true;
+      if (name.length < 2) { setError("name", dict.errName); ok = false; } else setError("name","");
+      if (!isEmailValid(email)) { setError("email", dict.errEmail); ok = false; } else setError("email","");
+      if (message.length < 10) { setError("message", dict.errMsg); ok = false; } else setError("message","");
+
+      if (!ok) return;
+
+      // Build WhatsApp message based on language
+      let prefix = (currentLang === "en")
+        ? "Hi Ibrahim 👋\n"
+        : (currentLang === "fr")
+          ? "Bonjour Ibrahim 👋\n"
+          : "سلام إبراهيم 👋\n";
+
+      const nameLabel = (currentLang === "en") ? "Name" : (currentLang === "fr") ? "Nom" : "الاسم";
+      const emailLabel = (currentLang === "en") ? "Email" : (currentLang === "fr") ? "Email" : "البريد";
+      const msgLabel   = (currentLang === "en") ? "Message" : (currentLang === "fr") ? "Message" : "الرسالة";
+
+      const fullMessage =
+        prefix +
+        nameLabel + ": " + name + "\n" +
+        emailLabel + ": " + email + "\n" +
+        msgLabel + ": " + message;
+
+      window.location.href = waUrl(fullMessage);
+    });
+  </script>
+</body>
+</html>
